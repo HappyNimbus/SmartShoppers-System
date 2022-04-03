@@ -9,7 +9,7 @@
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="171.0" style="-fx-background-color: #88AC77;">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="brandImgView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Apple-PNG-Image-HD.png" />
                </image>
@@ -23,7 +23,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="400.0" prefWidth="401.0" style="-fx-background-color: DAEFDA;">
          <children>
-            <ImageView fitHeight="56.0" fitWidth="58.0" layoutX="168.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="lockImgView" fitHeight="56.0" fitWidth="58.0" layoutX="168.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@lock-icon-11.png" />
                </image>
@@ -40,17 +40,18 @@
                </font>
             </Label>
             <TextField fx:id="tfPass" layoutX="123.0" layoutY="163.0" prefHeight="25.0" prefWidth="243.0" promptText="Password" />
-            <Button fx:id="btLogin" layoutX="123.0" layoutY="221.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="243.0" style="-fx-background-color: #88AC77; -fx-cursor: hand;" text="LOG IN">
+            <Button fx:id="btLogin" layoutX="123.0" layoutY="238.0" mnemonicParsing="false" onAction="#loginButtonStart" prefHeight="42.0" prefWidth="243.0" style="-fx-background-color: #88AC77; -fx-cursor: hand;" text="LOG IN">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
             <Label layoutX="150.0" layoutY="346.0" text="Not a User?" />
-            <Button fx:id="btSignup" layoutX="212.0" layoutY="342.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Sign up!" textFill="#0d00ff">
+            <Button fx:id="btSignup" layoutX="212.0" layoutY="342.0" mnemonicParsing="false" onAction="#signUpButtonStart" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Sign up!" textFill="#0d00ff">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
+            <Label fx:id="lnMsg" layoutX="123.0" layoutY="208.0" />
          </children>
       </AnchorPane>
    </children>

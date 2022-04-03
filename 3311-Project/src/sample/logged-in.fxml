@@ -2,11 +2,27 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="lgUser" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.loginController">
+<AnchorPane prefHeight="507.0" prefWidth="779.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.loginController">
    <children>
-      <Label layoutX="249.0" layoutY="76.0" text="text" />
-      <Label fx:id="lgPass" layoutX="245.0" layoutY="132.0" text="text2" />
-      <Button fx:id="lnLogout" layoutX="243.0" layoutY="231.0" mnemonicParsing="false" style="-fx-cursor: hand;" text="LOG OUT" />
+      <SplitPane layoutY="-4.0" prefHeight="515.0" prefWidth="183.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="513.0" prefWidth="110.0" style="-fx-background-color: #88AC77;">
+               <children>
+                  <Label fx:id="lWelcome" layoutX="4.0" layoutY="2.0" prefHeight="25.0" prefWidth="156.0" text="Welcome" />
+                  <Button fx:id="btLogOut" layoutX="3.0" layoutY="487.0" mnemonicParsing="false" onAction="#logOutButton" style="-fx-cursor: hand;" text="Log Out" />
+                  <Button fx:id="btCart" layoutX="3.0" layoutY="51.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" style="-fx-cursor: hand;" text="Cart" />
+                  <Label layoutX="4.0" layoutY="27.0" text="SETTINGS">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btCInfo" layoutX="3.0" layoutY="82.0" mnemonicParsing="false" onAction="#changeInfoButton" prefHeight="25.0" prefWidth="96.0" style="-fx-cursor: hand;" text="Change Info" />
+                  <Button fx:id="btCStore" layoutX="3.0" layoutY="115.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" style="-fx-cursor: hand;" text="Change Store" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
    </children>
 </AnchorPane>

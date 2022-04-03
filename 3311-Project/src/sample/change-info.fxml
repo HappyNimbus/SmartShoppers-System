@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ChangeInfoController">
+   <children>
+      <Label layoutX="67.0" layoutY="40.0" text="Would you like to change your information?">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="14.0" layoutY="78.0" text="Username:" />
+      <Label layoutX="14.0" layoutY="110.0" text="Password:" />
+      <TextField fx:id="chUser" layoutX="78.0" layoutY="74.0" prefHeight="25.0" prefWidth="276.0" promptText="New Username" />
+      <TextField fx:id="chPass" layoutX="78.0" layoutY="106.0" prefHeight="25.0" prefWidth="276.0" promptText="New Password" />
+      <Button fx:id="btChange" layoutX="160.0" layoutY="297.0" mnemonicParsing="false" onAction="#changeButton" text="CHANGE" />
+      <Button fx:id="btClose" layoutX="160.0" layoutY="336.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="CLOSE" />
+      <Label fx:id="lbChange" layoutX="164.0" layoutY="183.0" text="CHANGED" />
+      <Button fx:id="deleteAccount" layoutX="135.0" layoutY="254.0" mnemonicParsing="false" onAction="#deleteAccountButton" text="DELETE ACCOUNT" />
+      <Label fx:id="chName" layoutX="178.0" layoutY="14.0" text="name" textFill="#f4f4f4" />
+   </children>
+</AnchorPane>
