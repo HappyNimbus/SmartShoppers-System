@@ -1,14 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sample.signUpAdminController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.signUpAdminController">
+   <children>
+      <Label layoutX="62.0" layoutY="49.0" text="Firstname:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="63.0" layoutY="79.0" text="Lastname:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="62.0" layoutY="113.0" text="Username:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="63.0" layoutY="147.0" text="Password:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="17.0" layoutY="184.0" text="Confirm Password:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="85.0" layoutY="221.0" text="Store:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="85.0" layoutY="259.0" text="Code:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <TextField fx:id="aFirst" layoutX="128.0" layoutY="45.0" prefHeight="25.0" prefWidth="212.0" promptText="Firstname" />
+      <TextField fx:id="aLast" layoutX="128.0" layoutY="75.0" prefHeight="25.0" prefWidth="212.0" promptText="Lastname" />
+      <TextField fx:id="aUser" layoutX="128.0" layoutY="109.0" prefHeight="25.0" prefWidth="212.0" promptText="Username" />
+      <TextField fx:id="aPass" layoutX="128.0" layoutY="143.0" prefHeight="25.0" prefWidth="212.0" promptText="Password" />
+      <TextField fx:id="aCPass" layoutX="128.0" layoutY="180.0" prefHeight="25.0" prefWidth="212.0" promptText="Confirm Password" />
+      <TextField fx:id="aCode" layoutX="128.0" layoutY="255.0" prefHeight="25.0" prefWidth="212.0" promptText="Code" />
+      <Button fx:id="aSignup" layoutX="451.0" layoutY="54.0" mnemonicParsing="false" onAction="#signUpButton" text="SIGN UP" />
+      <Label layoutX="14.0" layoutY="369.0" text="NOTE: ADMINS DO NOT NEED TO ENTER A STORE">
+         <font>
+            <Font size="11.0" />
+         </font></Label>
+      <Label layoutX="374.0" layoutY="369.0" text="Not an Admin or Manager?" />
+      <Button fx:id="aBack" layoutX="519.0" layoutY="365.0" mnemonicParsing="false" onAction="#backButton" style="-fx-background-color: Transparent;" text="Click Here!" textFill="#3c00ff">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Label fx:id="aLabel" layoutX="360.0" layoutY="184.0" text="Label" />
+      <Label fx:id="aAuth" layoutX="360.0" layoutY="259.0" text="Label" />
+      <Label fx:id="aMsg" layoutX="220.0" layoutY="21.0" text="Label" />
+      <Label fx:id="aAdmin" layoutX="360.0" layoutY="221.0" text="Label" />
+      <ChoiceBox fx:id="aStore" layoutX="128.0" layoutY="217.0" prefHeight="25.0" prefWidth="212.0" />
+   </children>
 </AnchorPane>

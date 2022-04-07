@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.logInManagerController">
+   <children>
+      <Label fx:id="lmWelcome" layoutX="14.0" layoutY="14.0" text="Welcome" />
+      <Label fx:id="lmStore" layoutX="14.0" layoutY="39.0" text="Store: " />
+      <Button fx:id="lmAdd" layoutX="13.0" layoutY="78.0" mnemonicParsing="false" onAction="#addButton" text="ADD ITEM" />
+      <Button fx:id="lmRemove" layoutX="13.0" layoutY="118.0" mnemonicParsing="false" onAction="#removeItemButton" text="REMOVE ITEM" />
+      <Button fx:id="lmUpdate" layoutX="13.0" layoutY="158.0" mnemonicParsing="false" onAction="#updateButton" text="UPDATE ITEM" />
+      <Label layoutX="444.0" layoutY="14.0" text="SALE ITEMS">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="lmLogout" layoutX="19.0" layoutY="361.0" mnemonicParsing="false" onAction="#logOutButton" text="Log Out" />
+      <TableView fx:id="lmTable" layoutX="366.0" layoutY="43.0" prefHeight="346.0" prefWidth="222.0">
+        <columns>
+          <TableColumn fx:id="lmTName" prefWidth="75.0" text="Name" />
+          <TableColumn fx:id="lmTPrice" prefWidth="75.0" text="Price" />
+            <TableColumn fx:id="lmTIsle" prefWidth="75.0" text="Isle" />
+        </columns>
+      </TableView>
+      <Button fx:id="lmUStore" layoutX="13.0" layoutY="200.0" mnemonicParsing="false" onAction="#updateStoreButton" text="UPDATE STORE" />
+   </children>
+</AnchorPane>

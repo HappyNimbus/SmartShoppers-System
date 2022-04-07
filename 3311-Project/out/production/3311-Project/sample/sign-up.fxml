@@ -53,7 +53,7 @@
             <TextField fx:id="suLast" layoutX="139.0" layoutY="106.0" prefHeight="25.0" prefWidth="217.0" promptText="Lastname" />
             <Label layoutX="17.0" layoutY="362.0" />
             <Label layoutX="21.0" layoutY="371.0" text="Admin or Manager?" />
-            <Button fx:id="suAdmin" layoutX="127.0" layoutY="367.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Click Here!" textFill="#3700ff">
+            <Button fx:id="suAdmin" layoutX="127.0" layoutY="367.0" mnemonicParsing="false" onAction="#adminButton" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Click Here!" textFill="#3700ff">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -65,8 +65,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <TextField fx:id="suStore" layoutX="139.0" layoutY="254.0" prefHeight="25.0" prefWidth="217.0" promptText="Preferred Store" />
-            <Label layoutX="15.0" layoutY="209.0" prefHeight="17.0" prefWidth="116.0" text="Cofirm Password:">
+            <Label layoutX="15.0" layoutY="209.0" prefHeight="17.0" prefWidth="116.0" text="Confirm Password:">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -74,6 +73,7 @@
             <TextField fx:id="suPass1" layoutX="139.0" layoutY="205.0" prefHeight="25.0" prefWidth="217.0" promptText="Confirm Password" />
             <Label fx:id="suMsg" layoutX="14.0" layoutY="47.0" prefHeight="17.0" prefWidth="360.0" />
             <Label fx:id="suPTest" layoutX="14.0" layoutY="230.0" prefHeight="17.0" prefWidth="360.0" />
+            <ChoiceBox fx:id="suStore" layoutX="139.0" layoutY="254.0" prefHeight="25.0" prefWidth="217.0" />
          </children>
       </AnchorPane>
    </children>

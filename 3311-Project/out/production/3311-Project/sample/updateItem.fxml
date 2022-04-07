@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.updateItemController">
+   <children>
+      <Label layoutX="14.0" layoutY="23.0" text="Item to be update:" />
+      <TextField fx:id="cSName" layoutX="124.0" layoutY="19.0" prefHeight="25.0" prefWidth="202.0" promptText="Enter Item Name" />
+      <Button fx:id="cStart" layoutX="355.0" layoutY="19.0" mnemonicParsing="false" onAction="#startButton" text="Start" />
+      <Label fx:id="uName" layoutX="209.0" layoutY="51.0" text="name:" />
+      <Label layoutX="14.0" layoutY="80.0" text="Change Name:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="105.0" text="Change Catagory:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="132.0" text="Change Price:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="158.0" prefHeight="17.0" prefWidth="106.0" text="Change Avalibility:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="12.0" layoutY="183.0" prefHeight="17.0" prefWidth="77.0" text="Change Size:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="210.0" prefHeight="17.0" prefWidth="77.0" text="Change Isle:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="11.0" layoutY="262.0" text="Change description:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="236.0" prefHeight="17.0" prefWidth="77.0" text="Change Sale:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="cName" layoutX="124.0" layoutY="76.0" prefHeight="25.0" prefWidth="202.0" promptText="Name" />
+      <TextField fx:id="cCat" layoutX="124.0" layoutY="101.0" prefHeight="25.0" prefWidth="202.0" promptText="Catagory" />
+      <TextField fx:id="cPrice" layoutX="124.0" layoutY="128.0" prefHeight="25.0" prefWidth="202.0" promptText="Price" />
+      <TextField fx:id="cL" layoutX="125.0" layoutY="179.0" prefHeight="25.0" prefWidth="25.0" promptText="L" />
+      <Label layoutX="156.0" layoutY="183.0" prefHeight="17.0" prefWidth="9.0" text="x">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="cW" layoutX="172.0" layoutY="179.0" prefHeight="25.0" prefWidth="25.0" promptText="W" />
+      <Label layoutX="205.0" layoutY="183.0" prefHeight="17.0" prefWidth="9.0" text="x">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="cH" layoutX="221.0" layoutY="179.0" prefHeight="25.0" prefWidth="25.0" promptText="H" />
+      <TextField fx:id="cIsle" layoutX="124.0" layoutY="206.0" prefHeight="25.0" prefWidth="202.0" promptText="Isle" />
+      <TextArea fx:id="cD" layoutX="14.0" layoutY="280.0" prefHeight="112.0" prefWidth="312.0" promptText="Description" />
+      <RadioButton fx:id="cST" layoutX="107.0" layoutY="236.0" mnemonicParsing="false" text="TRUE" />
+      <RadioButton fx:id="cSF" layoutX="162.0" layoutY="236.0" mnemonicParsing="false" text="FALSE" />
+      <RadioButton fx:id="cAT" layoutX="127.0" layoutY="158.0" mnemonicParsing="false" text="TRUE" />
+      <RadioButton fx:id="cAF" layoutX="182.0" layoutY="158.0" mnemonicParsing="false" text="FALSE" />
+      <Button fx:id="cUName" layoutX="350.0" layoutY="76.0" mnemonicParsing="false" onAction="#updateNameB" text="UPDATE NAME" />
+      <Button fx:id="cUCat" layoutX="350.0" layoutY="101.0" mnemonicParsing="false" onAction="#updateCatB" text="UPDATE CATAGORY" />
+      <Button fx:id="cUPrice" layoutX="350.0" layoutY="128.0" mnemonicParsing="false" onAction="#updatePriceB" text="UPDATE PRICE" />
+      <Button fx:id="cUAva" layoutX="349.0" layoutY="154.0" mnemonicParsing="false" onAction="#updateAvaB" text="UPDATE AVALIBILITY" />
+      <Button fx:id="cUSize" layoutX="349.0" layoutY="179.0" mnemonicParsing="false" onAction="#updateSizeB" text="UPDATE SIZE" />
+      <Button fx:id="cUIsle" layoutX="349.0" layoutY="206.0" mnemonicParsing="false" onAction="#updateIsleB" text="UPDATE ISLE" />
+      <Button fx:id="cUSale" layoutX="349.0" layoutY="232.0" mnemonicParsing="false" onAction="#updateSaleB" text="UPDATE SALE" />
+      <Button fx:id="cUD" layoutX="349.0" layoutY="279.0" mnemonicParsing="false" onAction="#updateDescB" text="UPDATE DESCRIPTION" />
+      <Button fx:id="cBack" layoutX="545.0" layoutY="361.0" mnemonicParsing="false" onAction="#backButton" text="Back" />
+      <Label fx:id="cStore" layoutX="531.0" layoutY="23.0" text="Label" />
+      <Label fx:id="cMsg" layoutX="398.0" layoutY="328.0" text="Label" />
+      <Label fx:id="cUser" layoutX="531.0" layoutY="43.0" text="Label" />
+   </children>
+</AnchorPane>

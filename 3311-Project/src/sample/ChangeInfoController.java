@@ -2,9 +2,14 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -45,6 +50,7 @@ public class ChangeInfoController {
     }
 
     public void deleteAccountButton(ActionEvent event){
+
         deleteAccount();
     }
 
@@ -76,9 +82,9 @@ public class ChangeInfoController {
                 e.getCause();
             }
 
+            chName.setText(chUser.getText());
             chUser.setText("");
             chPass.setText("");
-            chName.setText(chUser.getText());
 
         }
 
@@ -97,8 +103,8 @@ public class ChangeInfoController {
                 e.getCause();
             }
 
-            chUser.setText("");
             chName.setText(chUser.getText());
+            chUser.setText("");
 
         }
         else if(chPass.getText().isEmpty() == false){
@@ -114,8 +120,9 @@ public class ChangeInfoController {
                 e.printStackTrace();
                 e.getCause();
             }
-            chPass.setText("");
             chName.setText(chUser.getText());
+            chPass.setText("");
+
 
         }
 
@@ -140,8 +147,31 @@ public class ChangeInfoController {
             e.printStackTrace();
             e.getCause();
         }
+    }
 
 
+    public void backButton(ActionEvent event){
+        Stage stage = (Stage) btClose.getScene().getWindow();
+        stage.close();
+        back();
+    }
+
+    public void back(){
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("logged-in.fxml"));
+            Parent root = loader.load();
+            loginController loginController = loader.getController();
+            loginController.welcome(chName.getText());
+            Stage loggedinStage = new Stage();
+            loggedinStage.initStyle(StageStyle.UNDECORATED);
+            loggedinStage.setScene(new Scene(root, 778, 510));
+            loggedinStage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
     }
 
 }

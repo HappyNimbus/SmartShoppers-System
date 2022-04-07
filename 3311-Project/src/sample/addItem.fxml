@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.addItemController">
+   <children>
+      <Label layoutX="11.0" layoutY="100.0" text="Item Name:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="20.0" layoutY="33.0" text="Catagory:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="42.0" layoutY="64.0" text="Price:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="45.0" layoutY="133.0" text="Size:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="47.0" layoutY="165.0" text="Isle:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="adCat" layoutX="86.0" layoutY="29.0" prefHeight="25.0" prefWidth="203.0" promptText="Catagory" />
+      <TextField fx:id="adPrice" layoutX="86.0" layoutY="60.0" prefHeight="25.0" prefWidth="203.0" promptText="Price" />
+      <TextField fx:id="adName" layoutX="86.0" layoutY="96.0" prefHeight="25.0" prefWidth="203.0" promptText="Item Name" />
+      <TextField fx:id="adL" layoutX="86.0" layoutY="129.0" prefHeight="25.0" prefWidth="26.0" promptText="L" />
+      <TextField fx:id="adIsle" layoutX="86.0" layoutY="161.0" prefHeight="25.0" prefWidth="203.0" promptText="Isle" />
+      <Label layoutX="11.0" layoutY="200.0" text="Description:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="adD" layoutX="88.0" layoutY="200.0" prefHeight="193.0" prefWidth="200.0" promptText="Description" />
+      <Button fx:id="adAdd" layoutX="530.0" layoutY="29.0" mnemonicParsing="false" onAction="#addButton" text="ADD" />
+      <Button fx:id="adBack" layoutX="523.0" layoutY="361.0" mnemonicParsing="false" onAction="#backButton" prefHeight="25.0" prefWidth="55.0" text="Back" />
+      <Label fx:id="adMsg" layoutX="453.0" layoutY="73.0" />
+      <Label layoutX="118.0" layoutY="133.0" text="x">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="adW" layoutX="131.0" layoutY="129.0" prefHeight="25.0" prefWidth="26.0" promptText="W" />
+      <TextField fx:id="adH" layoutX="175.0" layoutY="129.0" prefHeight="25.0" prefWidth="26.0" promptText="H" />
+      <Label layoutX="163.0" layoutY="133.0" text="x">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="adStore" layoutX="407.0" layoutY="14.0" text="store" textFill="#f4f4f4" />
+      <Label fx:id="adUser" layoutX="143.0" layoutY="14.0" text="user" textFill="#f4f4f4" />
+   </children>
+</AnchorPane>

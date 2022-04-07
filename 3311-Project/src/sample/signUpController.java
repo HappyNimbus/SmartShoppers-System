@@ -1,4 +1,6 @@
 package sample;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -12,10 +14,12 @@ import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class signUpController implements Initializable {
+public class signUpController implements Initializable{
 
     @FXML
     private Button suSignup;
@@ -30,7 +34,7 @@ public class signUpController implements Initializable {
     private TextField suPass;
 
     @FXML
-    private TextField suPass1; //change to password field later
+    private TextField suPass1;
 
     @FXML
     private TextField suFirst;
@@ -39,7 +43,7 @@ public class signUpController implements Initializable {
     private TextField suLast;
 
     @FXML
-    private TextField suStore;
+    private ChoiceBox<String> suStore;
 
     @FXML
     private Label suMsg;
@@ -47,10 +51,42 @@ public class signUpController implements Initializable {
     @FXML
     private Label suPTest;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    @FXML
+    private Button suAdmin;
 
+    String addStore = null;
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle arg){
+        loadData();
+        suStore.setValue("Select Store");
     }
+
+    public void loadData(){
+
+        DBUtils connectNow = new DBUtils();
+        Connection connectDB = connectNow.getConnection();
+
+        String getLocations = "SELECT * FROM store";
+
+        try{
+            Statement statement = connectDB.createStatement();
+            ResultSet getStore = statement.executeQuery(getLocations);
+
+            while (getStore.next()) {
+               addStore = getStore.getString("store");
+               suStore.getItems().add(addStore);
+            }
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+
 
     public void singUpButton(ActionEvent event){
 
@@ -75,6 +111,12 @@ public class signUpController implements Initializable {
 
     }
 
+    public void adminButton(ActionEvent event){
+        Stage stage = (Stage) suAdmin.getScene().getWindow();
+        stage.close();
+        adminSignup();
+    }
+
     public void registerUser() {
 
         DBUtils connectNow = new DBUtils();
@@ -85,7 +127,7 @@ public class signUpController implements Initializable {
         String username = suUser.getText();
         String password = suPass.getText();
         String authentication = "user";
-        String storepref = suStore.getText();
+        String storepref = suStore.getValue();
 
         String insertFields = "INSERT INTO users (firstname, lastname, username, password, authentication, storepref) VALUES ('";
         String insertValues = firstname + "','" + lastname + "','" + username + "','" + password + "','" + authentication + "','" + storepref + "')";
@@ -106,6 +148,21 @@ public class signUpController implements Initializable {
         try {
 
             Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
+            Stage backStage = new Stage();
+            backStage.initStyle(StageStyle.UNDECORATED);
+            backStage.setScene(new Scene(root, 600, 400));
+            backStage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void adminSignup(){
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("sign-up-admin.fxml"));
             Stage backStage = new Stage();
             backStage.initStyle(StageStyle.UNDECORATED);
             backStage.setScene(new Scene(root, 600, 400));

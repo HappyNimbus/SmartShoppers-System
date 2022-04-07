@@ -46,6 +46,12 @@ public class loginController{
 
     }
 
+    public void changeStoreButton(){
+        Stage stage = (Stage) btCStore.getScene().getWindow();
+        stage.close();
+        changeStoreScene();
+    }
+
 
 
     public String welcome(String userName){
@@ -87,7 +93,7 @@ public class loginController{
             changeInfoController.getName(lWelcome.getText());
             Stage infoStage = new Stage();
             infoStage.initStyle(StageStyle.UNDECORATED);
-            infoStage.setScene(new Scene(root, 778, 510));
+            infoStage.setScene(new Scene(root, 380, 400));
             infoStage.show();
 
 
@@ -95,7 +101,24 @@ public class loginController{
             e.printStackTrace();
             e.getCause();
         }
+    }
 
+    public void changeStoreScene(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("change-store.fxml"));
+            Parent root = loader.load();
+            ChangeStoreController changeStoreController = loader.getController();
+            changeStoreController.getName(lWelcome.getText());
+            Stage infoStage = new Stage();
+            infoStage.initStyle(StageStyle.UNDECORATED);
+            infoStage.setScene(new Scene(root, 380, 400));
+            infoStage.show();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
 
     }
 

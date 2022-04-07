@@ -8,14 +8,14 @@ public class JDBC {
     public static void main(String[] args) {
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/logininfo", "root", "root");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/info", "root", "root");
 
             Statement statement = connection.createStatement();
 
             ResultSet resultSet = statement.executeQuery("select * from users");
 
             while (resultSet.next()) {
-                System.out.println(resultSet.getString("firstname"));
+                System.out.println(resultSet.getString("storepref"));
             }
         } catch (Exception e) {
             e.printStackTrace();

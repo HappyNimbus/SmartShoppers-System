@@ -38,9 +38,12 @@ public class Controller {
     @FXML
     private Label lnMsg;
 
+    String auth = null;
+
 
     public void loginButtonStart(ActionEvent event){
         if(tfUser.getText().isEmpty() == false && tfPass.getText().isEmpty() == false){
+            authentication();
             validateLogin();
         }
         else{
@@ -54,6 +57,27 @@ public class Controller {
         createAccountForm();
     }
 
+    public void authentication(){
+        DBUtils connectNow = new DBUtils();
+        Connection connectDB = connectNow.getConnection();
+        String checkAuth = "SELECT authentication FROM users WHERE username = '" + tfUser.getText() + "'";
+
+        try{
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(checkAuth);
+
+            while(queryResult.next()){
+                auth = queryResult.getString("authentication");
+            }
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+
+    }
+
     public void validateLogin(){
         DBUtils connectNow = new DBUtils();
         Connection connectDB = connectNow.getConnection();
@@ -65,12 +89,19 @@ public class Controller {
             ResultSet queryResult = statement.executeQuery(verifyLogin);
 
             while (queryResult.next()){
+
                 if(queryResult.getInt(1) == 1)
                 {
                     lnMsg.setText("Login Success");
                     Stage stage = (Stage) btLogin.getScene().getWindow();
                     stage.close();
-                    userLogInForm();
+
+                    if(auth.equals("user")) {
+                        userLogInForm();
+                    }
+                    else if(auth.equals("Manager")){
+                        managerLoginForm();
+                    }
 
                 }
                 else
@@ -106,7 +137,6 @@ public class Controller {
    public void userLogInForm(){
        try {
 
-
            FXMLLoader loader = new FXMLLoader(getClass().getResource("logged-in.fxml"));
            Parent root = loader.load();
            loginController loginController = loader.getController();
@@ -116,13 +146,27 @@ public class Controller {
            loggedinStage.setScene(new Scene(root, 778, 510));
            loggedinStage.show();
 
+       } catch (Exception e) {
+           e.printStackTrace();
+           e.getCause();
+       }
+   }
+
+   public void managerLoginForm(){
+       try {
+
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("loginManager.fxml"));
+           Parent root = loader.load();
+           logInManagerController loginController = loader.getController();
+           loginController.welcome(tfUser.getText());
+           Stage loggedinStage = new Stage();
+           loggedinStage.initStyle(StageStyle.UNDECORATED);
+           loggedinStage.setScene(new Scene(root, 600, 400));
+           loggedinStage.show();
 
        } catch (Exception e) {
            e.printStackTrace();
            e.getCause();
        }
-
-
    }
-
 }
