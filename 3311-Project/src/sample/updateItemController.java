@@ -85,7 +85,7 @@ public void updateName(){
         cMsg.setText("Fill in Name to update");
     }
     else{
-        String newNameChange = "UPDATE items SET name = '" + newName + "' WHERE name = '" + uName.getText() + "'";
+        String newNameChange = "UPDATE items SET name = '" + newName + "' WHERE name = '" + uName.getText() + "'" + " AND store = '" + cStore.getText() + "'";
 
         try{
             Statement statement = connectDB.createStatement();
@@ -109,7 +109,7 @@ public void updateName(){
             cMsg.setText("Fill in catagory to update");
         }
         else{
-            String newChange = "UPDATE items SET catagory = '" + newCat + "' WHERE name = '" + uName.getText() + "'";
+            String newChange = "UPDATE items SET catagory = '" + newCat + "' WHERE name = '" + uName.getText() + "'"+ " AND store = '" + cStore.getText() + "'";
 
             try{
                 Statement statement = connectDB.createStatement();
@@ -133,7 +133,7 @@ public void updateName(){
             cMsg.setText("Fill in price to update");
         }
         else{
-            String newChange = "UPDATE items SET price = '" + newPrice + "' WHERE name = '" + uName.getText() + "'";
+            String newChange = "UPDATE items SET price = '" + newPrice + "' WHERE name = '" + uName.getText() + "'"+ " AND store = '" + cStore.getText() + "'";
 
             try{
                 Statement statement = connectDB.createStatement();
@@ -158,7 +158,7 @@ public void updateName(){
             cMsg.setText("Fill in size to update");
         }
         else{
-            String newChange = "UPDATE items SET size = '" + newL + "x" + newW + "x" + newH + "' WHERE name = '" + uName.getText() + "'";
+            String newChange = "UPDATE items SET size = '" + newL + "x" + newW + "x" + newH + "' WHERE name = '" + uName.getText() + "'" + " AND store = '" + cStore.getText() + "'";
 
             try{
                 Statement statement = connectDB.createStatement();
@@ -183,7 +183,7 @@ public void updateName(){
             cMsg.setText("Fill in isle to update");
         }
         else{
-            String newChange = "UPDATE items SET isle = '" + newIsle + "' WHERE name = '" + uName.getText() + "'";
+            String newChange = "UPDATE items SET isle = '" + newIsle + "' WHERE name = '" + uName.getText() + "'" + " AND store = '" + cStore.getText() + "'";
 
             try{
                 Statement statement = connectDB.createStatement();
@@ -205,7 +205,7 @@ public void updateName(){
             cMsg.setText("Fill in description to update");
         }
         else{
-            String newChange = "UPDATE items SET description = '" + newDecs + "' WHERE name = '" + uName.getText() + "'";
+            String newChange = "UPDATE items SET description = '" + newDecs + "' WHERE name = '" + uName.getText() + "'" + " AND store = '" + cStore.getText() + "'";
 
             try{
                 Statement statement = connectDB.createStatement();
@@ -241,7 +241,7 @@ public void updateName(){
             cMsg.setText("Select availability to update");
         }
         else{
-            String newChange = "UPDATE items SET avalibilty = '" + newAva + "' WHERE name = '" + uName.getText() + "'";
+            String newChange = "UPDATE items SET avalibilty = '" + newAva + "' WHERE name = '" + uName.getText() + "'" + " AND store = '" + cStore.getText() + "'";
 
             try{
                 Statement statement = connectDB.createStatement();
@@ -270,7 +270,7 @@ public void updateName(){
             cMsg.setText("Select availability to update");
         }
         else{
-            String newChange = "UPDATE items SET sale = '" + newSale + "' WHERE name = '" + uName.getText() + "'";
+            String newChange = "UPDATE items SET sale = '" + newSale + "' WHERE name = '" + uName.getText() + "'" + " AND store = '" + cStore.getText() + "'";
 
             try{
                 Statement statement = connectDB.createStatement();

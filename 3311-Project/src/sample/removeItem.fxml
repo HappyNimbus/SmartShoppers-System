@@ -2,12 +2,16 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.removeItemController">
    <children>
       <Button fx:id="rBack" layoutX="527.0" layoutY="361.0" mnemonicParsing="false" onAction="#backLoginButton" text="Back" />
       <Button fx:id="rRemove" layoutX="495.0" layoutY="55.0" mnemonicParsing="false" onAction="#removeLoginButton" text="Remove" />
-      <Label layoutX="26.0" layoutY="59.0" text="Item name to remove:" />
+      <Label layoutX="23.0" layoutY="59.0" text="Item name to remove:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <TextField fx:id="rName" layoutX="151.0" layoutY="55.0" prefHeight="25.0" prefWidth="303.0" />
       <Label fx:id="rMsg" layoutX="286.0" layoutY="152.0" text="Label" />
       <Label fx:id="rStore" layoutX="71.0" layoutY="26.0" text="Label" />

@@ -25,7 +25,7 @@
       <TextField fx:id="uClose" layoutX="121.0" layoutY="60.0" promptText="Closing Hours" />
       <Button fx:id="uOHours" layoutX="286.0" layoutY="31.0" mnemonicParsing="false" onAction="#updateOpenB" text="Update Opening Hours" />
       <Button fx:id="uCHours" layoutX="286.0" layoutY="60.0" mnemonicParsing="false" onAction="#updateCloseB" prefHeight="25.0" prefWidth="139.0" text="Update Closing Hours" />
-      <Button fx:id="uAvab" layoutX="286.0" layoutY="88.0" mnemonicParsing="false" onAction="#updateAvaB" prefHeight="25.0" prefWidth="139.0" text="Update Avaliblity" />
+      <Button fx:id="uAvab" layoutX="286.0" layoutY="88.0" mnemonicParsing="false" onAction="#updateAvaB" prefHeight="25.0" prefWidth="139.0" text="Update Avalibility" />
       <RadioButton fx:id="uT" layoutX="121.0" layoutY="92.0" mnemonicParsing="false" text="TRUE">
          <toggleGroup>
             <ToggleGroup fx:id="uAva" />

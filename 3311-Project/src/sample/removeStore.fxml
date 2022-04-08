@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.removeStoreController">
+   <children>
+      <Label layoutX="14.0" layoutY="57.0" text="Store to Remove:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="rName" layoutX="127.0" layoutY="53.0" prefHeight="25.0" prefWidth="183.0" promptText="Store Name" />
+      <Label fx:id="rUser" layoutX="14.0" layoutY="25.0" text="Label" />
+      <Button fx:id="rRemove" layoutX="366.0" layoutY="53.0" mnemonicParsing="false" onAction="#removeB" text="REMOVE" />
+      <Button fx:id="rBack" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#backB" text="Back" />
+      <Label fx:id="rMsg" layoutX="212.0" layoutY="171.0" text="Label" />
+   </children>
+</AnchorPane>

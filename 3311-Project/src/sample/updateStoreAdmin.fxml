@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.updateStoreAdminController">
+   <children>
+      <Label layoutX="14.0" layoutY="25.0" text="Choose store to Update:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="uStore" layoutX="161.0" layoutY="21.0" prefWidth="150.0" />
+      <Label layoutX="14.0" layoutY="80.0" text="Opening Hours:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="17.0" layoutY="107.0" text="Closing Hours:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="9.0" layoutY="136.0" text="Store Avalibility:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="uOpen" layoutX="119.0" layoutY="76.0" promptText="Opening Hours" />
+      <TextField fx:id="uClose" layoutX="119.0" layoutY="103.0" promptText="Closing Hours" />
+      <RadioButton fx:id="uT" layoutX="118.0" layoutY="136.0" mnemonicParsing="false" text="TRUE">
+         <toggleGroup>
+            <ToggleGroup fx:id="uAva" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="uF" layoutX="181.0" layoutY="136.0" mnemonicParsing="false" text="FALSE" toggleGroup="$uAva" />
+      <Button fx:id="uOHours" layoutX="285.0" layoutY="76.0" mnemonicParsing="false" onAction="#updateOpenB" text="Update Opening Hours" />
+      <Button fx:id="uCHours" layoutX="285.0" layoutY="103.0" mnemonicParsing="false" onAction="#updateCloseB" prefHeight="25.0" prefWidth="139.0" text="Update Closing Hours" />
+      <Button fx:id="uAvab" layoutX="285.0" layoutY="132.0" mnemonicParsing="false" onAction="#updateAvaB" prefHeight="25.0" prefWidth="137.0" text="Update Avalibility" />
+      <Button fx:id="uBack" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#backB" text="Back" />
+      <Label fx:id="uUser" layoutX="555.0" layoutY="17.0" text="Label" />
+      <Label fx:id="uMsg" layoutX="194.0" layoutY="208.0" text="Label" />
+   </children>
+</AnchorPane>

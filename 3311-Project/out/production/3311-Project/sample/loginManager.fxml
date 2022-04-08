@@ -8,9 +8,9 @@
    <children>
       <Label fx:id="lmWelcome" layoutX="14.0" layoutY="14.0" text="Welcome" />
       <Label fx:id="lmStore" layoutX="14.0" layoutY="39.0" text="Store: " />
-      <Button fx:id="lmAdd" layoutX="13.0" layoutY="78.0" mnemonicParsing="false" onAction="#addButton" text="ADD ITEM" />
-      <Button fx:id="lmRemove" layoutX="13.0" layoutY="118.0" mnemonicParsing="false" onAction="#removeItemButton" text="REMOVE ITEM" />
-      <Button fx:id="lmUpdate" layoutX="13.0" layoutY="158.0" mnemonicParsing="false" onAction="#updateButton" text="UPDATE ITEM" />
+      <Button fx:id="lmAdd" layoutX="13.0" layoutY="78.0" mnemonicParsing="false" onAction="#addButton" prefHeight="25.0" prefWidth="98.0" text="ADD ITEM" />
+      <Button fx:id="lmRemove" layoutX="13.0" layoutY="118.0" mnemonicParsing="false" onAction="#removeItemButton" prefHeight="25.0" prefWidth="98.0" text="REMOVE ITEM" />
+      <Button fx:id="lmUpdate" layoutX="13.0" layoutY="158.0" mnemonicParsing="false" onAction="#updateButton" prefHeight="25.0" prefWidth="98.0" text="UPDATE ITEM" />
       <Label layoutX="444.0" layoutY="14.0" text="SALE ITEMS">
          <font>
             <Font name="System Bold" size="12.0" />

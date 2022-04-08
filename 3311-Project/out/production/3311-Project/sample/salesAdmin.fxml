@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.salesAdminController">
+   <children>
+      <TableView fx:id="sTable" layoutX="118.0" layoutY="52.0" prefHeight="284.0" prefWidth="345.0">
+        <columns>
+          <TableColumn fx:id="sTName" prefWidth="117.0" text="Name" />
+          <TableColumn fx:id="sTPrice" prefWidth="119.0" text="Price" />
+            <TableColumn fx:id="sTIsle" prefWidth="108.0" text="Isle" />
+        </columns>
+      </TableView>
+      <Button fx:id="sBack" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#backB" text="Back" />
+      <Label layoutX="241.0" layoutY="14.0" text="SALE ITEMS">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="sUser" layoutX="14.0" layoutY="19.0" text="Label" />
+      <Label fx:id="sStore" layoutX="14.0" layoutY="44.0" text="Label" />
+   </children>
+</AnchorPane>

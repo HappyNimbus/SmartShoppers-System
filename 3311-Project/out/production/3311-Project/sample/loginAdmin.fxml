@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.loginAdminController">
+   <children>
+      <Label fx:id="aWelcome" layoutX="14.0" layoutY="14.0" text="Welcome" />
+      <Button fx:id="aADD" layoutX="13.0" layoutY="48.0" mnemonicParsing="false" onAction="#addItemB" prefHeight="25.0" prefWidth="117.0" text="ADD ITEM" />
+      <Button fx:id="aRemove" layoutX="13.0" layoutY="86.0" mnemonicParsing="false" onAction="#removeItemB" prefHeight="25.0" prefWidth="117.0" text="REMOVE ITEM" />
+      <Button fx:id="aUpdate" layoutX="13.0" layoutY="125.0" mnemonicParsing="false" onAction="#updateItemB" prefHeight="25.0" prefWidth="117.0" text="UPDATE ITEM" />
+      <Button fx:id="aUStore" layoutX="13.0" layoutY="164.0" mnemonicParsing="false" onAction="#updateStoreB" prefHeight="25.0" prefWidth="117.0" text="UPDATE STORE" />
+      <Button fx:id="aLogout" layoutX="13.0" layoutY="361.0" mnemonicParsing="false" onAction="#logOutButton" text="Log Out" />
+      <Button fx:id="aAddStore" layoutX="13.0" layoutY="200.0" mnemonicParsing="false" onAction="#addStoreB" prefHeight="25.0" prefWidth="117.0" text="ADD STORE" />
+      <Button fx:id="aRemoveStore" layoutX="13.0" layoutY="235.0" mnemonicParsing="false" onAction="#removeStoreB" prefHeight="25.0" prefWidth="117.0" text="REMOVE STORE" />
+      <Button fx:id="aUMan" layoutX="161.0" layoutY="48.0" mnemonicParsing="false" onAction="#updateManagerB" prefHeight="25.0" prefWidth="137.0" text="UPDATE MANAGER" />
+      <Button fx:id="aCheck" layoutX="393.0" layoutY="276.0" mnemonicParsing="false" onAction="#checkB" prefHeight="25.0" prefWidth="187.0" text="CHECK" />
+      <Label layoutX="239.0" layoutY="239.0" text="Check Sale Items for Store:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="aStoreCheck" layoutX="393.0" layoutY="235.0" prefHeight="25.0" prefWidth="187.0" />
+   </children>
+</AnchorPane>

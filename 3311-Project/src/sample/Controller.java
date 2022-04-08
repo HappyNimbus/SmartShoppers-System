@@ -102,7 +102,9 @@ public class Controller {
                     else if(auth.equals("Manager")){
                         managerLoginForm();
                     }
-
+                    else if(auth.equals("Admin")){
+                        adminLoginForm();
+                    }
                 }
                 else
                 {
@@ -168,5 +170,24 @@ public class Controller {
            e.printStackTrace();
            e.getCause();
        }
+   }
+
+   public void adminLoginForm(){
+       try {
+
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("loginAdmin.fxml"));
+           Parent root = loader.load();
+           loginAdminController loginController = loader.getController();
+           loginController.getUser(tfUser.getText());
+           Stage loggedinStage = new Stage();
+           loggedinStage.initStyle(StageStyle.UNDECORATED);
+           loggedinStage.setScene(new Scene(root, 600, 400));
+           loggedinStage.show();
+
+       } catch (Exception e) {
+           e.printStackTrace();
+           e.getCause();
+       }
+
    }
 }

@@ -1,6 +1,5 @@
 package sample;
 
-import com.mysql.cj.xdevapi.Table;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -72,6 +71,7 @@ public class logInManagerController  implements Initializable {
             e.getCause();
         }
         lmStore.setText(store);
+        table(lmStore.getText());
     }
     public void logOutButton(ActionEvent event){
         Stage stage = (Stage) lmLogout.getScene().getWindow();
@@ -198,11 +198,16 @@ public class logInManagerController  implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
+    public void table(String store){
+        lmStore.setText(store);
         DBUtils connectNow = new DBUtils();
         Connection connectDB = connectNow.getConnection();
 
         try {
-            ResultSet rs = connectDB.createStatement().executeQuery("SELECT * FROM items WHERE sale = 'TRUE'");
+            ResultSet rs = connectDB.createStatement().executeQuery("SELECT * FROM items WHERE sale = 'TRUE' AND store = '" + lmStore.getText() + "'");
 
             while(rs.next()){
                 oblist.add(new tableView(rs.getString("name"),rs.getString("price"), rs.getString("isle")));
@@ -217,4 +222,5 @@ public class logInManagerController  implements Initializable {
         lmTable.setItems(oblist);
     }
 }
+
 
