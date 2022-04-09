@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="381.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ChangeStoreController">
+   <children>
+      <Button fx:id="scChange" layoutX="170.0" layoutY="325.0" mnemonicParsing="false" onAction="#changeButton" text="CHANGE" />
+      <Button fx:id="scClose" layoutX="308.0" layoutY="367.0" mnemonicParsing="false" onAction="#backButton" prefHeight="25.0" prefWidth="63.0" text="BACK" />
+      <Label layoutX="64.0" layoutY="276.0" text="Location:" />
+      <Label fx:id="scLabel" layoutX="173.0" layoutY="297.0" text="CHANGED" />
+      <Label layoutX="54.0" layoutY="245.0" text="Would you like to change your prefered location">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="scUser" layoutX="160.0" layoutY="14.0" text="username" />
+      <ChoiceBox fx:id="scChangeL" layoutX="116.0" layoutY="272.0" prefWidth="150.0" />
+      <Label fx:id="scSearchL" layoutX="138.0" layoutY="31.0" text="Search for stores">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="scSearchL1" layoutX="9.0" layoutY="56.0" text="Enter your location:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="scLocation" layoutX="127.0" layoutY="52.0" prefHeight="25.0" prefWidth="125.0" promptText="Location" />
+      <TableView fx:id="scTable" layoutX="16.0" layoutY="87.0" prefHeight="153.0" prefWidth="355.0">
+        <columns>
+          <TableColumn fx:id="scStore" prefWidth="110.0" text="Store" />
+          <TableColumn fx:id="scAva" prefWidth="123.0" text="Availability" />
+            <TableColumn fx:id="scDistance" minWidth="0.0" prefWidth="121.0" text="Distance" />
+        </columns>
+      </TableView>
+      <Button fx:id="scSearch" layoutX="266.0" layoutY="52.0" mnemonicParsing="false" onAction="#searchB" prefHeight="25.0" prefWidth="104.0" text="Search" />
+      <Label fx:id="scMsg" layoutX="304.0" layoutY="31.0" text="Label" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="576.0" prefWidth="1117.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.loginController">
+   <children>
+      <SplitPane layoutY="-4.0" prefHeight="582.0" prefWidth="183.0">
+        <items>
+          <AnchorPane prefHeight="550.0" prefWidth="181.0" style="-fx-background-color: #88AC77;">
+               <children>
+                  <Label fx:id="lWelcome" layoutX="4.0" layoutY="2.0" prefHeight="25.0" prefWidth="156.0" text="Welcome" />
+                  <Button fx:id="btLogOut" layoutX="3.0" layoutY="552.0" mnemonicParsing="false" onAction="#logOutButton" style="-fx-cursor: hand;" text="Log Out" />
+                  <Label layoutX="4.0" layoutY="27.0" text="SETTINGS">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btCInfo" layoutX="3.0" layoutY="53.0" mnemonicParsing="false" onAction="#changeInfoButton" prefHeight="25.0" prefWidth="96.0" style="-fx-cursor: hand;" text="Change Info" />
+                  <Button fx:id="btCStore" layoutX="3.0" layoutY="88.0" mnemonicParsing="false" onAction="#changeStoreButton" prefHeight="25.0" prefWidth="96.0" style="-fx-cursor: hand;" text="Change Store" />
+                  <Label fx:id="lStore" layoutX="113.0" layoutY="6.0" text="Label" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <TextField fx:id="searchName" layoutX="193.0" layoutY="27.0" promptText="Search Item Name" />
+      <Button fx:id="searchB" layoutX="352.0" layoutY="27.0" mnemonicParsing="false" onAction="#searchB" text="Search Name" />
+      <ChoiceBox fx:id="searchCat" layoutX="494.0" layoutY="27.0" prefWidth="150.0" />
+      <Label layoutX="518.0" layoutY="6.0" text="Search by Catagory" />
+      <Button fx:id="searchCatB" layoutX="659.0" layoutY="27.0" mnemonicParsing="false" onAction="#catB" text="Search Catagory" />
+      <TableView fx:id="searchTable" layoutX="193.0" layoutY="56.0" prefHeight="199.0" prefWidth="618.0">
+        <columns>
+          <TableColumn fx:id="srTName" prefWidth="75.0" text="Name" />
+          <TableColumn fx:id="srTCat" prefWidth="75.0" text="Catagory" />
+            <TableColumn fx:id="srTSize" prefWidth="75.0" text="Size (cm)" />
+            <TableColumn fx:id="srTPrice" prefWidth="75.0" text="Price" />
+            <TableColumn fx:id="srTAva" prefWidth="71.0" text="Availability" />
+            <TableColumn fx:id="srTIsle" prefWidth="49.0" text="Isle" />
+            <TableColumn fx:id="srTD" prefWidth="197.0" text="Description" />
+        </columns>
+      </TableView>
+      <Label layoutX="458.0" layoutY="278.0" text="ITEMS ON SALE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="addB" layoutX="193.0" layoutY="255.0" mnemonicParsing="false" onAction="#addSelectSearch" prefHeight="25.0" prefWidth="87.0" text="Add to Cart" />
+      <Label fx:id="aMsg" layoutX="294.0" layoutY="259.0" text="Label" />
+      <Label layoutX="940.0" layoutY="31.0" text="Shopping Cart">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <TableView fx:id="saleTable" layoutX="193.0" layoutY="316.0" prefHeight="199.0" prefWidth="618.0">
+         <columns>
+            <TableColumn fx:id="saTName" prefWidth="75.0" text="Name" />
+            <TableColumn fx:id="saTCat" prefWidth="75.0" text="Catagory" />
+            <TableColumn fx:id="saTSize" prefWidth="75.0" text="Size (cm)" />
+            <TableColumn fx:id="saTPrice" prefWidth="75.0" text="Price" />
+            <TableColumn fx:id="saTAva" prefWidth="71.0" text="Availability" />
+            <TableColumn fx:id="saTIsle" prefWidth="49.0" text="Isle" />
+            <TableColumn fx:id="saTD" prefWidth="197.0" text="Description" />
+         </columns>
+      </TableView>
+      <TableView fx:id="cart" layoutX="833.0" layoutY="56.0" prefHeight="458.0" prefWidth="274.0">
+        <columns>
+          <TableColumn fx:id="cName" prefWidth="90.0" text="Name" />
+          <TableColumn fx:id="cIsle" prefWidth="93.0" text="Isle" />
+            <TableColumn fx:id="cPrice" prefWidth="90.0" text="Price" />
+        </columns>
+      </TableView>
+      <Button fx:id="removeB" layoutX="1021.0" layoutY="514.0" mnemonicParsing="false" onAction="#removeItem" text="Remove Item" />
+      <Label fx:id="rMsg" layoutX="833.0" layoutY="518.0" text="Label" />
+      <Button fx:id="addB1" layoutX="193.0" layoutY="514.0" mnemonicParsing="false" onAction="#addSelectSale" prefHeight="25.0" prefWidth="87.0" text="Add to Cart" />
+      <Label fx:id="aMsg1" layoutX="294.0" layoutY="518.0" text="Label" />
+   </children>
+</AnchorPane>

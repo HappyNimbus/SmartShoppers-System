@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.updateItemAdminController">
+   <children>
+      <Label layoutX="5.0" layoutY="6.0" text="Select Store to Update Item:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="adCStore" layoutX="165.0" layoutY="2.0" prefWidth="150.0" />
+      <Label layoutX="5.0" layoutY="38.0" text="Item to update:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="adCSName" layoutX="103.0" layoutY="34.0" prefHeight="25.0" prefWidth="211.0" />
+      <Button fx:id="adCStart" layoutX="352.0" layoutY="34.0" mnemonicParsing="false" onAction="#startButton" text="Start" />
+      <Label fx:id="adUName" layoutX="195.0" layoutY="65.0" text="Label" />
+      <Label fx:id="adCUser" layoutX="558.0" layoutY="15.0" text="Label" />
+      <Label layoutX="5.0" layoutY="94.0" text="Change Name:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="8.0" layoutY="117.0" text="Change Catagory:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="8.0" layoutY="140.0" text="Change Price:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="11.0" layoutY="166.0" text="Change Avalibility:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="11.0" layoutY="192.0" text="Change Size:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="158.0" layoutY="192.0" text="x">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="205.0" layoutY="192.0" text="x">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="13.0" layoutY="226.0" text="Change Isle:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="13.0" layoutY="256.0" text="Change Sale:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="273.0" text="Change Description:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="adCName" layoutX="122.0" layoutY="90.0" prefHeight="25.0" prefWidth="191.0" />
+      <TextField fx:id="adCCat" layoutX="122.0" layoutY="113.0" prefHeight="25.0" prefWidth="191.0" />
+      <TextField fx:id="adCPrice" layoutX="122.0" layoutY="136.0" prefHeight="25.0" prefWidth="191.0" />
+      <TextField fx:id="adCIsle" layoutX="122.0" layoutY="222.0" prefHeight="25.0" prefWidth="191.0" />
+      <TextField fx:id="adCL" layoutX="121.0" layoutY="188.0" prefHeight="25.0" prefWidth="35.0" />
+      <TextField fx:id="adCW" layoutX="167.0" layoutY="188.0" prefHeight="25.0" prefWidth="35.0" />
+      <TextField fx:id="adCH" layoutX="214.0" layoutY="188.0" prefHeight="25.0" prefWidth="35.0" />
+      <TextArea fx:id="adCD" layoutX="17.0" layoutY="290.0" prefHeight="102.0" prefWidth="296.0" />
+      <Button fx:id="adCUName" layoutX="335.0" layoutY="90.0" mnemonicParsing="false" onAction="#updateNameB" text="UPDATE NAME" />
+      <Button fx:id="adCUCat" layoutX="335.0" layoutY="113.0" mnemonicParsing="false" onAction="#updateCatB" text="UPDATE CATAGORY" />
+      <Button fx:id="adCUPrice" layoutX="335.0" layoutY="136.0" mnemonicParsing="false" onAction="#updatePriceB" text="UPDATE PRICE" />
+      <Button fx:id="adCUAva" layoutX="335.0" layoutY="162.0" mnemonicParsing="false" onAction="#updateAvaB" text="UPDATE AVALIBILTY" />
+      <Button fx:id="adCUSize" layoutX="335.0" layoutY="188.0" mnemonicParsing="false" onAction="#updateSizeB" text="UPDATE SIZE" />
+      <Button fx:id="adCUIsle" layoutX="335.0" layoutY="222.0" mnemonicParsing="false" onAction="#updateIsleB" text="UPDATE ISLE" />
+      <Button fx:id="adCUSale" layoutX="335.0" layoutY="252.0" mnemonicParsing="false" onAction="#updateSaleB" text="UPDATE SALE" />
+      <Button fx:id="adCUD" layoutX="335.0" layoutY="290.0" mnemonicParsing="false" onAction="#updateDescB" text="UPDATE DESCRIPTION" />
+      <Button fx:id="adBack" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#backButton" text="Back" />
+      <RadioButton fx:id="adCAT" layoutX="124.0" layoutY="166.0" mnemonicParsing="false" text="TRUE">
+         <toggleGroup>
+            <ToggleGroup fx:id="adAVA" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="adCAF" layoutX="178.0" layoutY="166.0" mnemonicParsing="false" text="FALSE" toggleGroup="$adAVA" />
+      <RadioButton fx:id="adCST" layoutX="124.0" layoutY="256.0" mnemonicParsing="false" text="TRUE">
+         <toggleGroup>
+            <ToggleGroup fx:id="adSale" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="adCSF" layoutX="176.0" layoutY="256.0" mnemonicParsing="false" text="FALSE" toggleGroup="$adSale" />
+      <Label fx:id="adCMsg" layoutX="379.0" layoutY="333.0" text="Label" />
+   </children>
+</AnchorPane>

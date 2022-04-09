@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.signUpController">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="217.0" style="-fx-background-color: #88AC77;">
+         <children>
+            <Label layoutX="38.0" layoutY="128.0" text="SMART SHOPPERS" textFill="#036817">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="suStorePref" prefHeight="400.0" prefWidth="384.0">
+         <children>
+            <Label layoutX="107.0" layoutY="14.0" text="Thank you for signing up!">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="18.0" layoutY="144.0" text="Username:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="175.0" text="Password:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="258.0" text="Preferred Store:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="16.0" layoutY="78.0" text="Firstname:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="110.0" text="Lastname:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="suUser" layoutX="139.0" layoutY="140.0" prefHeight="25.0" prefWidth="217.0" promptText="Username" />
+            <TextField fx:id="suPass" layoutX="139.0" layoutY="171.0" prefHeight="25.0" prefWidth="217.0" promptText="Password" />
+            <TextField fx:id="suFirst" layoutX="139.0" layoutY="74.0" prefHeight="25.0" prefWidth="217.0" promptText="Firstname" />
+            <TextField fx:id="suLast" layoutX="139.0" layoutY="106.0" prefHeight="25.0" prefWidth="217.0" promptText="Lastname" />
+            <Label layoutX="17.0" layoutY="362.0" />
+            <Label layoutX="21.0" layoutY="371.0" text="Admin or Manager?" />
+            <Button fx:id="suAdmin" layoutX="127.0" layoutY="367.0" mnemonicParsing="false" onAction="#adminButton" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Click Here!" textFill="#3700ff">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="suSignup" layoutX="139.0" layoutY="315.0" mnemonicParsing="false" onAction="#singUpButton" prefHeight="20.0" prefWidth="217.0" style="-fx-cursor: hand;" text="SIGN UP" />
+            <Label layoutX="22.0" layoutY="354.0" text="Already a member?" />
+            <Button fx:id="bkLogin" layoutX="127.0" layoutY="350.0" mnemonicParsing="false" onAction="#reLoginButton" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Log In!" textFill="#3700ff">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label layoutX="15.0" layoutY="209.0" prefHeight="17.0" prefWidth="116.0" text="Confirm Password:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="suPass1" layoutX="139.0" layoutY="205.0" prefHeight="25.0" prefWidth="217.0" promptText="Confirm Password" />
+            <Label fx:id="suMsg" layoutX="14.0" layoutY="47.0" prefHeight="17.0" prefWidth="360.0" />
+            <Label fx:id="suPTest" layoutX="14.0" layoutY="230.0" prefHeight="17.0" prefWidth="360.0" />
+            <ChoiceBox fx:id="suStore" layoutX="139.0" layoutY="254.0" prefHeight="25.0" prefWidth="217.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>
