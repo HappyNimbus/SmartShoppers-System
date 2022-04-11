@@ -34,7 +34,7 @@ public class loginController implements Initializable{
     private Button btCStore;
 
     @FXML
-    private Label lWelcome, aMsg, rMsg, lStore;
+    private Label lWelcome, aMsg, rMsg, lStore, lAva, aMsg1;
 
     @FXML
     private Button searchB, searchCatB, addB, addB1, removeB;
@@ -82,7 +82,6 @@ public class loginController implements Initializable{
         Connection connectDB = connectNow.getConnection();
 
         String getStore = "SELECT storepref FROM users WHERE username = '" + lWelcome.getText() + "'";
-
         Statement statement = null;
         try {
             statement = connectDB.createStatement();
@@ -94,12 +93,30 @@ public class loginController implements Initializable{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String storeNew = lStore.getText();
-        loadData(storeNew);
-        saleTable(storeNew);
-        cart(storeNew, lWelcome.getText());
-        return username;
 
+        String getAva = "SELECT avalibility FROM store WHERE store = '" + lStore.getText() + "'";
+        try {
+            statement = connectDB.createStatement();
+            ResultSet getStorePref = statement.executeQuery(getAva);
+
+            while(getStorePref.next()){
+                lAva.setText(getStorePref.getString("avalibility"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if(lAva.getText().equals("FALSE")){
+            aMsg.setText("STORE UNAVAILABLE");
+            aMsg1.setText("STORE UNAVAILABLE");
+        }
+        else {
+            String storeNew = lStore.getText();
+            loadData(storeNew);
+            saleTable(storeNew);
+            cart(storeNew, lWelcome.getText());
+        }
+        return username;
     }
 
 
@@ -198,7 +215,7 @@ public class loginController implements Initializable{
         DBUtils connectNow = new DBUtils();
         Connection connectDB = connectNow.getConnection();
         try {
-            ResultSet rs = connectDB.createStatement().executeQuery("SELECT * FROM items WHERE sale = 'TRUE' AND store = '" + storeN + "'");
+            ResultSet rs = connectDB.createStatement().executeQuery("SELECT * FROM items WHERE sale = 'TRUE' AND avalibilty = 'TRUE' AND store = '" + storeN + "'");
 
             while(rs.next()){
                 saleT.add(new sale(rs.getString("name"),rs.getString("catagory"),rs.getString("size"),rs.getString("price"),rs.getString("avalibilty"),rs.getString("isle"),rs.getString("description")));
@@ -270,7 +287,7 @@ public class loginController implements Initializable{
         DBUtils connectNow = new DBUtils();
         Connection connectDB = connectNow.getConnection();
         try {
-            ResultSet rs = connectDB.createStatement().executeQuery("SELECT * FROM items WHERE store = '" + storeN + "' AND catagory = '" + newSearch + "'");
+            ResultSet rs = connectDB.createStatement().executeQuery("SELECT * FROM items WHERE store = '" + storeN + "' AND catagory = '" + newSearch + "'AND avalibilty = 'TRUE'");
 
             while(rs.next()){
                 searchT.add(new search(rs.getString("name"),rs.getString("catagory"),rs.getString("size"),rs.getString("price"),rs.getString("avalibilty"),rs.getString("isle"),rs.getString("description")));
@@ -295,23 +312,32 @@ public class loginController implements Initializable{
         String addName = add.get(0).getName();
         String addIsle = add.get(0).getIsle();
         String addPrice = add.get(0).getPrice();
+        String addAva = add.get(0).getAva();
 
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
-        String updateCart = "INSERT INTO cart(user,item,isle,price,store) VALUES ('";
-        String updateCart2 = lWelcome.getText() + "','" + addName + "','" + addIsle + "','" + addPrice + "','" + lStore.getText() + "')";
-        String uCart = updateCart + updateCart2;
-        try{
-            Statement statement = connectDB.createStatement();
-            statement.executeUpdate(uCart);
-        }catch(Exception e){
-            e.printStackTrace();
+        if(addAva.equals("FALSE")){
+            aMsg.setText("ITEM NOT ADDED");
         }
-        cart.getItems().clear();
-        String searchC = lWelcome.getText();
-        String storeNew = lStore.getText();
-        cart(storeNew, searchC);
+
+        else {
+            DBUtils connectNow = new DBUtils();
+            Connection connectDB = connectNow.getConnection();
+
+            String updateCart = "INSERT INTO cart(user,item,isle,price,store,availability) VALUES ('";
+            String updateCart2 = lWelcome.getText() + "','" + addName + "','" + addIsle + "','" + addPrice + "','" + lStore.getText() + "','" + addAva + "')";
+            String uCart = updateCart + updateCart2;
+            try {
+                Statement statement = connectDB.createStatement();
+                statement.executeUpdate(uCart);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            aMsg.setText("ITEM ADDED");
+            cart.getItems().clear();
+            String searchC = lWelcome.getText();
+            String storeNew = lStore.getText();
+            cart(storeNew, searchC);
+
+        }
 
     }
 
@@ -323,12 +349,13 @@ public class loginController implements Initializable{
         String addName = add.get(0).getName();
         String addIsle = add.get(0).getIsle();
         String addPrice = add.get(0).getPrice();
+        String addAva = add.get(0).getAva();
 
         DBUtils connectNow = new DBUtils();
         Connection connectDB = connectNow.getConnection();
 
-        String updateCart = "INSERT INTO cart(user,item,isle,price,store) VALUES ('";
-        String updateCart2 = lWelcome.getText() + "','" + addName + "','" + addIsle + "','" + addPrice + "','" + lStore.getText() + "')";
+        String updateCart = "INSERT INTO cart(user,item,isle,price,store,availability) VALUES ('";
+        String updateCart2 = lWelcome.getText() + "','" + addName + "','" + addIsle + "','" + addPrice + "','" + lStore.getText() + "','" + addAva + "')";
         String uCart = updateCart + updateCart2;
         try{
             Statement statement = connectDB.createStatement();
@@ -336,6 +363,7 @@ public class loginController implements Initializable{
         }catch(Exception e){
             e.printStackTrace();
         }
+        aMsg1.setText("Item Added");
         cart.getItems().clear();
         String searchC = lWelcome.getText();
         String storeNew = lStore.getText();
@@ -361,6 +389,7 @@ public class loginController implements Initializable{
         }catch(Exception e){
             e.printStackTrace();
         }
+        rMsg.setText("Item Removed");
         cart.getItems().clear();
         String searchC = lWelcome.getText();
         String storeNew = lStore.getText();
@@ -374,7 +403,7 @@ public class loginController implements Initializable{
         DBUtils connectNow = new DBUtils();
         Connection connectDB = connectNow.getConnection();
         try {
-            ResultSet rs = connectDB.createStatement().executeQuery("SELECT * FROM cart WHERE store = '" + storeN + "' AND user = '" + newUser + "'");
+            ResultSet rs = connectDB.createStatement().executeQuery("SELECT * FROM cart WHERE store = '" + storeN + "' AND user = '" + newUser + "' AND availability = 'TRUE'");
 
             while(rs.next()){
                 cartT.add(new cartView(rs.getString("item"),rs.getString("isle"), rs.getString("price")));

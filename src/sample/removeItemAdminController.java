@@ -39,21 +39,8 @@ public class removeItemAdminController implements Initializable {
     }
 
     public void removeLoginButton() {
-        remove();
-    }
-
-    public void backLoginButton(){
-        Stage stage = (Stage) adRBack.getScene().getWindow();
-        stage.close();
-        back();
-    }
-
-    public void remove(){
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
         String productName = adRName.getText();
-
+        String store = (String) adRStore.getValue();
         if(adRStore.getValue() == null){
             adRMsg.setText("No store was selected");
         }
@@ -61,19 +48,16 @@ public class removeItemAdminController implements Initializable {
             adRMsg.setText("Information is missing");
         }
         else {
-            String deleteItem = "DELETE FROM items WHERE name = '" + productName + "'" + "AND store = '" + adRStore.getValue() + "'";
-
-            try {
-                Statement statement = connectDB.createStatement();
-                statement.executeUpdate(deleteItem);
-                adRMsg.setText("Item Removed");
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
+            adRMsg.setText("Item Removed");
+            removeItemAdminControllerBE.remove(productName,store);
             adRName.setText("");
         }
+    }
+
+    public void backLoginButton(){
+        Stage stage = (Stage) adRBack.getScene().getWindow();
+        stage.close();
+        back();
     }
 
     public void back(){

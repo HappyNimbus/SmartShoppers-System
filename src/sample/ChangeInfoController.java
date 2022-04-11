@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.Statement;
 
 
@@ -44,109 +43,36 @@ public class ChangeInfoController {
     }
 
     public void changeButton(ActionEvent event){
-
-        changeUserInfo();
-
-    }
-
-    public void deleteAccountButton(ActionEvent event){
-
-        deleteAccount();
-    }
-
-
-    public void changeUserInfo() {
-
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
         String changedUser = chUser.getText();
         String changedPass = chPass.getText();
         String originalUser = chName.getText();
 
-
-           if(chUser.getText().isEmpty() == false && chPass.getText().isEmpty() == false){
-
-            String userChange = "UPDATE users SET username = '" + changedUser + "' WHERE username = '" + originalUser + "'";
-            String passChange = "UPDATE users SET password = '" + changedPass + "' WHERE username = '" + originalUser + "'";
-
-            try {
-                Statement statement = connectDB.createStatement();
-                statement.executeUpdate(passChange);
-                statement.executeUpdate(userChange);
-                lbChange.setText("Changes Successful");
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                e.getCause();
-            }
-
-            chName.setText(chUser.getText());
-            chUser.setText("");
-            chPass.setText("");
-
+        if(chUser.getText().isEmpty() == false && chPass.getText().isEmpty() == false) {
+            lbChange.setText("Changes Successful");
+            ChangeInfoControllerBE.changeUserInfo(changedUser, changedPass, originalUser);
+            chName.setText(changedUser);
         }
-
         else if (chUser.getText().isEmpty() == false) {
-
-            String userChange = "UPDATE users SET username = '" + changedUser + "' WHERE username = '" + originalUser + "'";
-
-            try {
-                Statement statement = connectDB.createStatement();
-                statement.executeUpdate(userChange);
-                lbChange.setText("Username Change Successful");
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                e.getCause();
-            }
-
-            chName.setText(chUser.getText());
-            chUser.setText("");
-
+            lbChange.setText("Username Change Successful");
+            ChangeInfoControllerBE.changeUserInfo(changedUser, changedPass, originalUser);
+            chName.setText(changedUser);
         }
         else if(chPass.getText().isEmpty() == false){
-            String passChange = "UPDATE users SET password = '" + changedPass + "' WHERE username = '" + originalUser + "'";
-
-            try {
-                Statement statement = connectDB.createStatement();
-                statement.executeUpdate(passChange);
-                lbChange.setText("Password Change Successful");
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                e.getCause();
-            }
-            chName.setText(chUser.getText());
-            chPass.setText("");
-
-
+            lbChange.setText("Password Change Successful");
+            ChangeInfoControllerBE.changeUserInfo(changedUser, changedPass, originalUser);
         }
-
         else{
             lbChange.setText("No Changes Made");
         }
+
+
     }
 
-    public void deleteAccount(){
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
+    public void deleteAccountButton(ActionEvent event){
         String originalUser = chName.getText();
-
-        String deleteUser = "DELETE FROM users WHERE username = '" + originalUser + "'";
-
-        try{
-            Statement statement = connectDB.createStatement();
-            statement.executeUpdate(deleteUser);
-
-
-        } catch(Exception e){
-            e.printStackTrace();
-            e.getCause();
-        }
+        ChangeInfoControllerBE.deleteAccount(originalUser);
+        lbChange.setText("User Deleted");
+        deleted();
     }
 
 
@@ -158,7 +84,6 @@ public class ChangeInfoController {
 
     public void back(){
         try {
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource("logged-in.fxml"));
             Parent root = loader.load();
             loginController loginController = loader.getController();
@@ -166,6 +91,22 @@ public class ChangeInfoController {
             Stage loggedinStage = new Stage();
             loggedinStage.initStyle(StageStyle.UNDECORATED);
             loggedinStage.setScene(new Scene(root, 1117, 576));
+            loggedinStage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+    public void deleted(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
+            Parent root = loader.load();
+            loginController loginController = loader.getController();
+            loginController.welcome(chName.getText());
+            Stage loggedinStage = new Stage();
+            loggedinStage.initStyle(StageStyle.UNDECORATED);
+            loggedinStage.setScene(new Scene(root, 600, 400));
             loggedinStage.show();
 
         } catch (Exception e) {

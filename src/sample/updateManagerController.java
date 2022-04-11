@@ -37,11 +37,19 @@ public class updateManagerController implements Initializable {
     }
 
     public void createB(ActionEvent event){
+        String firstname = uFirst.getText();
+        String lastname = uLast.getText();
+        String username = uUser.getText();
+        String password = uPass.getText();
+        String store = uStore.getValue();
+        String authentication = "Manager";
+
         if(uFirst.getText().isEmpty() || uLast.getText().isEmpty() || uUser.getText().isEmpty() || uPass.getText().isEmpty()){
             uCMsg.setText("Please fill out all information");
         }
         else
-            create();
+            uCMsg.setText("Manager registered successfully");
+            updateManagerControllerBE.create(firstname, lastname, username, password, store, authentication);
     }
 
     public void backB(ActionEvent event){
@@ -50,11 +58,14 @@ public class updateManagerController implements Initializable {
         back();
     }
     public void deleteB(ActionEvent event){
+        String userDelete = uUser.getText();
         if(uUser.getText().isEmpty()){
             uDMsg.setText("Enter a User to Remove");
         }
-        else
-            delete();
+        else {
+            uDMsg.setText("Manager deleted successfully");
+            updateManagerControllerBE.delete(userDelete);
+        }
     }
     public void startUpdate(ActionEvent event){
         if(uUser.getText().isEmpty()){
@@ -66,164 +77,65 @@ public class updateManagerController implements Initializable {
         }
     }
     public void updateFirstnameB(ActionEvent event){
+        String first = uFirst.getText();
+        String oldUser = uMName.getText();
         if(uMName.getText().isEmpty()){
             uSMsg.setText("Please enter a User and press 'Start Update'");
         }
-        else
-            updateFirstname();
+        else {
+            uSMsg.setText("Manager firstname update successfully");
+            updateManagerControllerBE.updateFirstname(first, oldUser);
+        }
     }
     public void updateLastB(ActionEvent event){
+        String last = uLast.getText();
+        String oldUser = uMName.getText();
         if(uMName.getText().isEmpty()){
             uSMsg.setText("Please enter a User and press 'Start Update'");
         }
-        else
-            updateLast();
+        else {
+            uSMsg.setText("Manager lastname update successfully");
+            updateManagerControllerBE.updateLast(last, oldUser);
+        }
+
     }
 
     public void updateUserNameB(ActionEvent event){
+        String user = uUser.getText();
+        String oldUser = uMName.getText();
         if(uMName.getText().isEmpty()){
             uSMsg.setText("Please enter a User and press 'Start Update'");
         }
-        else
-            updateUserName();
+        else {
+            uSMsg.setText("Manager username update successfully");
+            updateManagerControllerBE.updateUserName(user, oldUser);
+            uMName.setText(user);
+        }
     }
 
     public void updatePasswordB(ActionEvent event){
+        String pass = uPass.getText();
+        String oldUser = uMName.getText();
         if(uMName.getText().isEmpty()){
             uSMsg.setText("Please enter a User and press 'Start Update'");
         }
-        else
-            updatePassword();
+        else {
+            uSMsg.setText("Manager password update successfully");
+            updateManagerControllerBE.updatePassword(pass, oldUser);
+        }
     }
 
     public void updateStoreB(ActionEvent event){
+        String store = uStore.getValue();
+        String oldUser = uMName.getText();
         if(uMName.getText().isEmpty()){
             uSMsg.setText("Please enter a User and press 'Start Update'");
         }
         else
-            updateStore();
-    }
-
-
-    public void create(){
-
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
-        String firstname = uFirst.getText();
-        String lastname = uLast.getText();
-        String username = uUser.getText();
-        String password = uPass.getText();
-        String store = uStore.getValue();
-        String authentication = "Manager";
-
-        String insertFields = "INSERT INTO users (firstname, lastname, username, password, authentication, storepref) VALUES ('";
-        String insertValues = firstname + "','" + lastname + "','" + username + "','" + password + "','" + authentication + "','" + store + "')";
-        String insertToRegister = insertFields + insertValues;
-        try{
-            Statement statement = connectDB.createStatement();
-            statement.executeUpdate(insertToRegister);
-            uCMsg.setText("Manager registered successfully");
-        }catch (Exception e){
-            e.printStackTrace();
-            e.getCause();
-        }
-
-    }
-
-    public void delete(){
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
-        String userDelete = uUser.getText();
-        String deleteInput = "DELETE FROM users WHERE username = '" + userDelete + "'";
-        try{
-            Statement statement = connectDB.createStatement();
-            statement.executeUpdate(deleteInput);
-            uDMsg.setText("Manager deleted successfully");
-        }catch (Exception e){
-            e.printStackTrace();
-            e.getCause();
-        }
-    }
-
-    public void updateFirstname(){
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
-        String first = uFirst.getText();
-        String updateFirst = "UPDATE users SET firstname = '" + first + "' WHERE username = '" + uMName.getText() + "'";
-        try{
-            Statement statement = connectDB.createStatement();
-            statement.executeUpdate(updateFirst);
-            uSMsg.setText("Manager firstname update successfully");
-        }catch (Exception e){
-            e.printStackTrace();
-            e.getCause();
-        }
-    }
-    public void updateLast(){
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
-        String last = uLast.getText();
-        String updateFirst = "UPDATE users SET lastname = '" + last + "' WHERE username = '" + uMName.getText() + "'";
-        try{
-            Statement statement = connectDB.createStatement();
-            statement.executeUpdate(updateFirst);
-            uSMsg.setText("Manager lastname update successfully");
-        }catch (Exception e){
-            e.printStackTrace();
-            e.getCause();
-        }
-    }
-
-    public void updateUserName(){
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
-        String user = uUser.getText();
-        String updateFirst = "UPDATE users SET username = '" + user + "' WHERE username = '" + uMName.getText() + "'";
-        try{
-            Statement statement = connectDB.createStatement();
-            statement.executeUpdate(updateFirst);
-            uSMsg.setText("Manager username update successfully");
-        }catch (Exception e){
-            e.printStackTrace();
-            e.getCause();
-        }
-        uMName.setText(user);
-    }
-    public void updatePassword(){
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
-        String pass = uPass.getText();
-        String updateFirst = "UPDATE users SET password = '" + pass + "' WHERE username = '" + uMName.getText() + "'";
-        try{
-            Statement statement = connectDB.createStatement();
-            statement.executeUpdate(updateFirst);
-            uSMsg.setText("Manager password update successfully");
-        }catch (Exception e){
-            e.printStackTrace();
-            e.getCause();
-        }
-    }
-    public void updateStore(){
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
-        String store = uStore.getValue();
-        String updateFirst = "UPDATE users SET storePref = '" + store + "' WHERE username = '" + uMName.getText() + "'";
-        try{
-            Statement statement = connectDB.createStatement();
-            statement.executeUpdate(updateFirst);
             uSMsg.setText("Manager store update successfully");
-        }catch (Exception e){
-            e.printStackTrace();
-            e.getCause();
-        }
+            updateManagerControllerBE.updateStore(store, oldUser);
     }
+
 
     public void back(){
 

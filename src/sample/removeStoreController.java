@@ -35,32 +35,13 @@ public class removeStoreController {
     }
 
     public void removeB(ActionEvent event){
-        remove();
-    }
-
-
-    public void remove(){
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
         String storeName = rName.getText();
-
         if(rName.getText().isEmpty()){
             rMsg.setText("Information is missing");
         }
-        else {
-            String deleteItem = "DELETE FROM store WHERE store = '" + storeName + "'";
-
-            try {
-                Statement statement = connectDB.createStatement();
-                statement.executeUpdate(deleteItem);
-                rMsg.setText("Item Removed");
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            rName.setText("");
+        else{
+            rMsg.setText("Store Removed");
+            removeStoreControllerBE.remove(storeName);
         }
     }
 

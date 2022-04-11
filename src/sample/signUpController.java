@@ -11,12 +11,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.jetbrains.annotations.NotNull;
 
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class signUpController implements Initializable{
@@ -60,7 +63,6 @@ public class signUpController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle arg){
         loadData();
-        suStore.setValue("Select Store");
     }
 
     public void loadData(){
@@ -68,7 +70,7 @@ public class signUpController implements Initializable{
         DBUtils connectNow = new DBUtils();
         Connection connectDB = connectNow.getConnection();
 
-        String getLocations = "SELECT * FROM store";
+        String getLocations = "SELECT * FROM store WHERE avalibility = 'TRUE'";
 
         try{
             Statement statement = connectDB.createStatement();
@@ -90,16 +92,38 @@ public class signUpController implements Initializable{
 
     public void singUpButton(ActionEvent event){
 
-        if (suPass.getText().equals(suPass1.getText())){
             suPTest.setText("");
-            registerUser();
+            String firstname = suFirst.getText();
+            String lastname = suLast.getText();
+            String username = suUser.getText();
+            String password = suPass.getText();
+            String authentication = "user";
+            String storepref = suStore.getValue();
+            String password2 = suPass1.getText();
+            signUpControllerBE.registerUser(firstname, lastname, username, password, password2, authentication, storepref);
 
-        } else{
+        DBUtils connectNow = new DBUtils();
+        Connection connectDB = connectNow.getConnection();
+        String verifyLogin = "SELECT count(1) FROM users WHERE username = '" + username + "'";
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifyLogin);
 
-            suPTest.setText("Password does not match");
+            while (queryResult.next()) {
 
+                if (queryResult.getInt(1) == 1) {
+                    suMsg.setText("User already exists");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
+        if (password.equals(password2)) {
+            suMsg.setText("User registered successfully");
+        }
+        else{
+            suMsg.setText("Password does not match");
+        }
 
     }
 
@@ -115,33 +139,6 @@ public class signUpController implements Initializable{
         Stage stage = (Stage) suAdmin.getScene().getWindow();
         stage.close();
         adminSignup();
-    }
-
-    public void registerUser() {
-
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
-        String firstname = suFirst.getText();
-        String lastname = suLast.getText();
-        String username = suUser.getText();
-        String password = suPass.getText();
-        String authentication = "user";
-        String storepref = suStore.getValue();
-
-        String insertFields = "INSERT INTO users (firstname, lastname, username, password, authentication, storepref) VALUES ('";
-        String insertValues = firstname + "','" + lastname + "','" + username + "','" + password + "','" + authentication + "','" + storepref + "')";
-        String insertToRegister = insertFields + insertValues;
-
-        try{
-            Statement statement = connectDB.createStatement();
-            statement.executeUpdate(insertToRegister);
-            suMsg.setText("User registered successfully");
-        }catch (Exception e){
-            e.printStackTrace();
-            e.getCause();
-        }
-
     }
 
     public void backLogin() {

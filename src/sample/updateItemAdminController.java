@@ -47,28 +47,115 @@ public class updateItemAdminController implements Initializable {
         start();
     }
     public void updateNameB(ActionEvent event){
-        updateName();
+        String newName = adCName.getText();
+        String store = (String) adCStore.getValue();
+        String oldName = adUName.getText();
+        if(adCName.getText().isEmpty()){
+            adCMsg.setText("Fill in Name to update");
+        }
+        else{
+            adCMsg.setText("Name Change Successful");
+            updateItemBE.updateName(newName, oldName, store);
+            adUName.setText(adCName.getText());
+        }
     }
     public void updateCatB(ActionEvent event){
-        updateCat();
+        String newCat = adCCat.getText();
+        String store = (String) adCStore.getValue();
+        String oldName = adUName.getText();
+        if(adCCat.getText().isEmpty()){
+            adCMsg.setText("Fill in catagory to update");
+        }
+        else{
+            adCMsg.setText("Category Change Successful");
+            updateItemBE.updateCat(newCat, oldName, store);
+        }
     }
     public void updatePriceB(ActionEvent event){
-        updatePrice();
+        String newPrice = adCPrice.getText();
+        String store = (String) adCStore.getValue();
+        String oldName = adUName.getText();
+        if(adCPrice.getText().isEmpty()){
+            adCMsg.setText("Fill in price to update");
+        }
+        else{
+            adCMsg.setText("Size Change Successful");
+            updateItemBE.updatePrice(newPrice, oldName, store);
+        }
     }
     public void updateAvaB(ActionEvent event){
-        updateAva();
+        String newAva = "";
+        if(adCAT.isSelected()){
+            newAva = "TRUE";
+        }
+        else if(adCAF.isSelected()){
+            newAva = "FALSE";
+        }
+        String store = (String) adCStore.getValue();
+        String oldName = adUName.getText();
+        if(adCAT.isSelected() == false && adCAF.isSelected() == false){
+            adCMsg.setText("Select availability to update");
+        }
+        else {
+            adCMsg.setText("Availability Change Successful");
+            updateItemBE.updateAva(newAva, oldName, store);
+        }
     }
     public void updateSizeB(ActionEvent event){
-        updateSize();
+        String newL = adCL.getText();
+        String newW = adCW.getText();
+        String newH = adCH.getText();
+        String store = (String) adCStore.getValue();
+        String oldName = adUName.getText();
+        if(adCL.getText().isEmpty() || adCW.getText().isEmpty() || adCH.getText().isEmpty()){
+            adCMsg.setText("Fill in size to update");
+        }
+        else {
+            adCMsg.setText("Size Change Successful");
+            updateItemBE.updateSize(newL,newW,newH,oldName,store);
+        }
     }
     public void updateIsleB(ActionEvent event) {
-        updateIsle();
+        String newIsle = adCIsle.getText();
+        String store = (String) adCStore.getValue();
+        String oldName = adUName.getText();
+        if(adCIsle.getText().isEmpty()){
+            adCMsg.setText("Fill in isle to update");
+        }
+        else {
+            adCMsg.setText("Isle Change Successful");
+            updateItemBE.updateIsle(newIsle, oldName, store);
+        }
     }
     public void updateSaleB(ActionEvent event){
-        updateSale();
+        String newSale = "";
+        String store = (String) adCStore.getValue();
+        String oldName = adUName.getText();
+        if(adCST.isSelected()){
+            newSale = "TRUE";
+        }
+        else if(adCSF.isSelected()){
+            newSale = "FALSE";
+        }
+        if(adCST.isSelected() == false && adCSF.isSelected() == false){
+            adCMsg.setText("Select availability to update");
+        }
+        else {
+            adCMsg.setText("Sale Change Successful");
+            updateItemBE.updateSale(newSale, oldName, store);
+        }
     }
     public void updateDescB(ActionEvent event){
-        updateDesc();
+        String newDecs = adCD.getText();
+        String store = (String) adCStore.getValue();
+        String oldName = adUName.getText();
+        if(adCD.getText().isEmpty()){
+            adCMsg.setText("Fill in description to update");
+        }
+        else {
+            adCMsg.setText("Description Change Successful");
+            updateItemBE.updateDesc(newDecs, oldName, store);
+        }
     }
 
     public void start(){
@@ -82,150 +169,8 @@ public class updateItemAdminController implements Initializable {
             adCMsg.setText("Fill in Name to start");
         }
         else{
+            adCMsg.setText("Isle Change Successful");
             adUName.setText(uSName);
-        }
-    }
-
-    public void updateName(){
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
-        String newName = adCName.getText();
-        if(adCName.getText().isEmpty()){
-            adCMsg.setText("Fill in Name to update");
-        }
-        else{
-            String newNameChange = "UPDATE items SET name = '" + newName + "' WHERE name = '" + adCName.getText() + "'" + "AND store = '" + adCStore.getValue() + "'";
-
-            try{
-                Statement statement = connectDB.createStatement();
-                statement.executeUpdate(newNameChange);
-                adCMsg.setText("Name Change Successful");
-
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-
-            adUName.setText(adCName.getText());
-            adCName.setText("");
-        }
-    }
-    public void updateCat(){
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
-        String newCat = adCCat.getText();
-        if(adCCat.getText().isEmpty()){
-            adCMsg.setText("Fill in catagory to update");
-        }
-        else{
-            String newChange = "UPDATE items SET catagory = '" + newCat + "' WHERE name = '" + adUName.getText() + "'" + " AND store = '" + adCStore.getValue() + "'";
-
-            try{
-                Statement statement = connectDB.createStatement();
-                statement.executeUpdate(newChange);
-                adCMsg.setText("Category Change Successful");
-
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-
-            adCCat.setText("");
-            adCMsg.setText("");
-        }
-    }
-    public void updatePrice(){
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
-        String newPrice = adCPrice.getText();
-        if(adCPrice.getText().isEmpty()){
-            adCMsg.setText("Fill in price to update");
-        }
-        else{
-            String newChange = "UPDATE items SET price = '" + newPrice + "' WHERE name = '" + adUName.getText() + "'"+ " AND store = '" + adCStore.getValue() + "'";
-
-            try{
-                Statement statement = connectDB.createStatement();
-                statement.executeUpdate(newChange);
-                adCMsg.setText("Catagory Change Successful");
-
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-            adCPrice.setText("");
-        }
-    }
-
-    public void updateSize(){
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
-        String newL = adCL.getText();
-        String newW = adCW.getText();
-        String newH = adCH.getText();
-        if(adCL.getText().isEmpty() || adCW.getText().isEmpty() || adCH.getText().isEmpty()){
-            adCMsg.setText("Fill in size to update");
-        }
-        else{
-            String newChange = "UPDATE items SET size = '" + newL + "x" + newW + "x" + newH + "' WHERE name = '" + adUName.getText() + "'"+ " AND store = '" + adCStore.getValue() + "'";
-
-            try{
-                Statement statement = connectDB.createStatement();
-                statement.executeUpdate(newChange);
-                adCMsg.setText("Size Change Successful");
-
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-
-            adCL.setText("");
-            adCW.setText("");
-            adCH.setText("");
-        }
-    }
-    public void updateIsle(){
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
-        String newIsle = adCIsle.getText();
-        if(adCIsle.getText().isEmpty()){
-            adCMsg.setText("Fill in isle to update");
-        }
-        else{
-            String newChange = "UPDATE items SET isle = '" + newIsle + "' WHERE name = '" + adUName.getText() + "'" + " AND store = '" + adCStore.getValue() + "'";
-
-            try{
-                Statement statement = connectDB.createStatement();
-                statement.executeUpdate(newChange);
-                adCMsg.setText("Isle Change Successful");
-
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-            adCIsle.setText("");
-        }
-    }
-    public void updateDesc(){
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
-        String newDecs = adCD.getText();
-        if(adCD.getText().isEmpty()){
-            adCMsg.setText("Fill in description to update");
-        }
-        else{
-            String newChange = "UPDATE items SET description = '" + newDecs + "' WHERE name = '" + adUName.getText() + "'" + " AND store = '" + adCStore.getValue() + "'";
-
-            try{
-                Statement statement = connectDB.createStatement();
-                statement.executeUpdate(newChange);
-                adCMsg.setText("Description Change Successful");
-
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-            adCD.setText("");
         }
     }
 
@@ -233,64 +178,6 @@ public class updateItemAdminController implements Initializable {
         Stage stage = (Stage) adBack.getScene().getWindow();
         stage.close();
         back();
-    }
-
-    public void updateAva(){
-        String newAva = "TRUE";
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
-        if(adCAT.isSelected()){
-            newAva = "TRUE";
-        }
-        else if(adCAF.isSelected()){
-            newAva = "FALSE";
-        }
-
-        if(adCAT.isSelected() == false && adCAF.isSelected() == false){
-            adCMsg.setText("Select availability to update");
-        }
-        else{
-            String newChange = "UPDATE items SET avalibilty = '" + newAva + "' WHERE name = '" + adUName.getText() + "'" + " AND store = '" + adCStore.getValue() + "'";
-
-            try{
-                Statement statement = connectDB.createStatement();
-                statement.executeUpdate(newChange);
-                adCMsg.setText("Availability Change Successful");
-
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public void updateSale(){
-        String newSale = "TRUE";
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
-        if(adCST.isSelected()){
-            newSale = "TRUE";
-        }
-        else if(adCSF.isSelected()){
-            newSale = "FALSE";
-        }
-
-        if(adCST.isSelected() == false && adCSF.isSelected() == false){
-            adCMsg.setText("Select availability to update");
-        }
-        else{
-            String newChange = "UPDATE items SET sale = '" + newSale + "' WHERE name = '" + adUName.getText() + "'" + " AND store = '" + adCStore.getValue() + "'";
-
-            try{
-                Statement statement = connectDB.createStatement();
-                statement.executeUpdate(newChange);
-                adCMsg.setText("Sale Change Successful");
-
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-        }
     }
 
     public void back(){

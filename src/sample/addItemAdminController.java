@@ -45,15 +45,6 @@ public class addItemAdminController implements Initializable {
     }
 
     public void addButton(ActionEvent event){
-        addNewItem();
-    }
-
-
-    public void addNewItem(){
-
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
         String catagory = adACat.getText();
         String isle = adAIsle.getText();
         String price = adAPrice.getText();
@@ -62,8 +53,7 @@ public class addItemAdminController implements Initializable {
         String W = adAW.getText();
         String H = adAH.getText();
         String description = adAD.getText();
-
-
+        String store = (String) adAStore.getValue();
         if(adAStore.getValue() == null){
             adAMsg.setText("No store was selected");
         }
@@ -71,21 +61,9 @@ public class addItemAdminController implements Initializable {
 
             adAMsg.setText("Information is missing");
         }
-
-        else{
-            String insertFields = "INSERT INTO items (catagory, price, avalibilty, name, size, sale, store, isle, description) VALUES ('";
-            String insertValues = catagory + "','" + price + "','" + "TRUE" + "','" + name + "','" + L + "x" + W + "x" + H + "','" + "FALSE" + "','" + adAStore.getValue() + "','" + isle + "','" + description + "')";
-            String insertToRegister = insertFields + insertValues;
-
-            try{
-                Statement statement = connectDB.createStatement();
-                statement.executeUpdate(insertToRegister);
-                adAMsg.setText("Item added successfully");
-            }catch (Exception e){
-                e.printStackTrace();
-                e.getCause();
-            }
-
+        else {
+            adAMsg.setText("Item added successfully");
+            addItemAdminControllerBE.addNewItem(catagory, price, name, L, W, H, store, isle, description);
         }
     }
 

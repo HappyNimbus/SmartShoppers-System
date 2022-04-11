@@ -20,6 +20,7 @@
                   <Button fx:id="btCInfo" layoutX="3.0" layoutY="53.0" mnemonicParsing="false" onAction="#changeInfoButton" prefHeight="25.0" prefWidth="96.0" style="-fx-cursor: hand;" text="Change Info" />
                   <Button fx:id="btCStore" layoutX="3.0" layoutY="88.0" mnemonicParsing="false" onAction="#changeStoreButton" prefHeight="25.0" prefWidth="96.0" style="-fx-cursor: hand;" text="Change Store" />
                   <Label fx:id="lStore" layoutX="113.0" layoutY="6.0" text="Label" />
+                  <Label fx:id="lAva" layoutX="113.0" layoutY="36.0" text="Label" />
                </children>
             </AnchorPane>
         </items>

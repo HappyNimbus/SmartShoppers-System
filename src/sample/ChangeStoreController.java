@@ -54,44 +54,22 @@ public class ChangeStoreController implements Initializable {
     }
 
     public void changeButton(ActionEvent event){
+        String changedLocation = scChangeL.getValue();
+        String originalUser = scUser.getText();
 
-        changeLocationInfo();
-
+        if(scChangeL.getValue() != null) {
+            scLabel.setText("Location Change Successful");
+            ChangeStoreControllerBE.changeLocationInfo(changedLocation, originalUser);
+        }
+        else{
+            scLabel.setText("No Changes Made");
+        }
     }
 
     public void backButton(ActionEvent event){
         Stage stage = (Stage) scClose.getScene().getWindow();
         stage.close();
         back();
-    }
-
-    public void changeLocationInfo() {
-
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
-        String changedLocation = scChangeL.getValue();
-        String originalUser = scUser.getText();
-
-
-        if(scChangeL.getValue() != null){
-
-            String userChange = "UPDATE users SET storepref = '" + changedLocation + "' WHERE username = '" + originalUser + "'";
-
-            try {
-                Statement statement = connectDB.createStatement();
-                statement.executeUpdate(userChange);
-                scLabel.setText("Location Change Successful");
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                e.getCause();
-            }
-        }
-        else{
-            scLabel.setText("No Changes Made");
-        }
     }
 
     public void back(){
@@ -120,7 +98,7 @@ public class ChangeStoreController implements Initializable {
         DBUtils connectNow = new DBUtils();
         Connection connectDB = connectNow.getConnection();
 
-        String getLocations = "SELECT * FROM store";
+        String getLocations = "SELECT * FROM store WHERE avalibility = 'TRUE'";
 
         try{
             Statement statement = connectDB.createStatement();
@@ -130,8 +108,6 @@ public class ChangeStoreController implements Initializable {
                 addStore = getStore.getString("store");
                 scChangeL.getItems().add(addStore);
             }
-
-
         }catch(Exception e){
             e.printStackTrace();
             e.getCause();

@@ -212,6 +212,7 @@ public class logInManagerController  implements Initializable {
             while(rs.next()){
                 oblist.add(new tableView(rs.getString("name"),rs.getString("price"), rs.getString("isle")));
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

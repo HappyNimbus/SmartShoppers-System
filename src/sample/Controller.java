@@ -43,8 +43,10 @@ public class Controller {
 
     public void loginButtonStart(ActionEvent event){
         if(tfUser.getText().isEmpty() == false && tfPass.getText().isEmpty() == false){
-            authentication();
-            validateLogin();
+            String user = tfUser.getText();
+            String pass = tfPass.getText();
+            authentication(user);
+            validateLogin(user, pass);
         }
         else{
             lnMsg.setText("Please enter username and password");
@@ -57,10 +59,10 @@ public class Controller {
         createAccountForm();
     }
 
-    public void authentication(){
+    public String authentication(String user){
         DBUtils connectNow = new DBUtils();
         Connection connectDB = connectNow.getConnection();
-        String checkAuth = "SELECT authentication FROM users WHERE username = '" + tfUser.getText() + "'";
+        String checkAuth = "SELECT authentication FROM users WHERE username = '" + user + "'";
 
         try{
             Statement statement = connectDB.createStatement();
@@ -75,15 +77,14 @@ public class Controller {
             e.printStackTrace();
             e.getCause();
         }
-
+        return checkAuth;
     }
 
-    public void validateLogin(){
+    public String validateLogin(String user, String pass){
+        String msg = "";
         DBUtils connectNow = new DBUtils();
         Connection connectDB = connectNow.getConnection();
-
-        String verifyLogin = "SELECT count(1) FROM users WHERE username = '" + tfUser.getText() + "' AND password = '" + tfPass.getText() + "'";
-
+        String verifyLogin = "SELECT count(1) FROM users WHERE username = '" + user + "' AND password = '" + pass + "'";
         try{
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
@@ -92,7 +93,7 @@ public class Controller {
 
                 if(queryResult.getInt(1) == 1)
                 {
-                    lnMsg.setText("Login Success");
+                    msg = "Login Success";
                     Stage stage = (Stage) btLogin.getScene().getWindow();
                     stage.close();
 
@@ -108,16 +109,15 @@ public class Controller {
                 }
                 else
                 {
-                    lnMsg.setText("Invalid login. Please try again");
+                    msg = "Invalid login. Please try again";
                 }
-
             }
 
         }catch (Exception e){
             e.printStackTrace();
             e.getCause();
         }
-
+        return msg;
     }
 
    public void createAccountForm() {

@@ -34,33 +34,23 @@ public class removeItemController {
     }
 
     public void removeLoginButton() {
-        remove();
+        String productName = rName.getText();
+        String store = rStore.getText();
+
+        if(rName.getText().isEmpty()){
+            rMsg.setText("Information is missing");
+        }
+        else {
+            rMsg.setText("Item Removed");
+            removeItemAdminControllerBE.remove(productName,store);
+        }
+        removeItemControllerBE.remove(productName,store);
     }
 
     public void backLoginButton(){
     Stage stage = (Stage) rBack.getScene().getWindow();
         stage.close();
         back();
-    }
-
-    public void remove(){
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
-        String productName = rName.getText();
-
-        String deleteItem = "DELETE FROM items WHERE name = '" + productName + "'";
-
-        try{
-            Statement statement = connectDB.createStatement();
-            statement.executeUpdate(deleteItem);
-            rMsg.setText("Item Removed");
-
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-
-        rName.setText("");
     }
 
     public void back(){

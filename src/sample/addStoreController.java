@@ -35,8 +35,14 @@ public class addStoreController {
         if(sName.getText().isEmpty() || sOHours.getText().isEmpty() || sCHours.getText().isEmpty()){
             sMsg.setText("Information is missing");
         }
-        else
-        addStore();
+        else {
+            sMsg.setText("Store added successfully");
+            String store = sName.getText();
+            String open = sOHours.getText();
+            String close = sCHours.getText();
+            String avalibility = "TRUE";
+            addStoreControllerBE.addStore(open, close, store);
+        }
     }
     public void backButton(ActionEvent event){
         Stage stage = (Stage) sBack.getScene().getWindow();
@@ -44,29 +50,6 @@ public class addStoreController {
         back();
     }
 
-    public void addStore(){
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
-        String store = sName.getText();
-        String open = sOHours.getText();
-        String close = sCHours.getText();
-        String avalibility = "TRUE";
-
-        String insertFields = "INSERT INTO store (open, close, avalibility, store) VALUES ('";
-        String insertValues = open + "','" + close + "','" + "TRUE" + "','" + store + "')";
-        String insert = insertFields + insertValues;
-
-        try{
-            Statement statement = connectDB.createStatement();
-            statement.executeUpdate(insert);
-            sMsg.setText("Store added successfully");
-
-        }catch(Exception e){
-            e.printStackTrace();
-            e.getCause();
-        }
-    }
     public void back(){
         try {
 

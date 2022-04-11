@@ -34,105 +34,57 @@ public class updateStoreAdminController implements Initializable {
         uUser.setText(user);
     }
     public void updateOpenB(ActionEvent event){
-
-        if(uStore.getValue() == null){
-            uMsg.setText("Select a store");
-        }
-        else
-        updateOpen();
-    }
-    public void updateCloseB(ActionEvent event){
-        if(uStore.getValue() == null){
-            uMsg.setText("Select a store");
-        }
-        else
-        updateClose();
-    }
-    public void updateAvaB(ActionEvent event){
-        if(uStore.getValue() == null){
-            uMsg.setText("Select a store");
-        }
-        else
-        updateAva();
-    }
-    public void backB(ActionEvent event){
-        Stage stage = (Stage) uBack.getScene().getWindow();
-        stage.close();
-        backToM();
-    }
-    public void updateOpen(){
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
         String newOpen = uOpen.getText();
+        String store = (String) uStore.getValue();
+        if(uStore.getValue() == null){
+            uMsg.setText("Select a store");
+        }
         if(uOpen.getText().isEmpty()){
             uMsg.setText("Fill in opening hours to update");
         }
-        else{
-            String newChange = "UPDATE store SET open = '" + newOpen + "' WHERE store = '" + uStore.getValue() + "'";
-
-            try{
-                Statement statement = connectDB.createStatement();
-                statement.executeUpdate(newChange);
-                uMsg.setText("Opening Hours Change Successful");
-
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-            uClose.setText("");
+        else {
+            uMsg.setText("Opening Hours Change Successful");
+            updateStoreBE.updateOpen(newOpen, store);
         }
     }
-
-    public void updateClose(){
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
+    public void updateCloseB(ActionEvent event){
         String newClose = uClose.getText();
+        String store = (String) uStore.getValue();
+        if(uStore.getValue() == null){
+            uMsg.setText("Select a store");
+        }
         if(uClose.getText().isEmpty()){
             uMsg.setText("Fill in closing hours to update");
         }
-        else{
-            String newChange = "UPDATE store SET close = '" + newClose + "' WHERE store = '" + uStore.getValue() + "'";
-
-            try{
-                Statement statement = connectDB.createStatement();
-                statement.executeUpdate(newChange);
-                uMsg.setText("Closing Hours Change Successful");
-
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-            uClose.setText("");
+        else {
+            uMsg.setText("Closing Hours Change Successful");
+            updateStoreBE.updateClose(newClose, store);
         }
     }
-
-    public void updateAva(){
-        String newAva = "TRUE";
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
+    public void updateAvaB(ActionEvent event){
+        String newAva = "";
+        String store = (String) uStore.getValue();
         if(uT.isSelected()){
             newAva = "TRUE";
         }
         else if(uF.isSelected()){
             newAva = "FALSE";
         }
-
+        if(uStore.getValue() == null){
+            uMsg.setText("Select a store");
+        }
         if(uT.isSelected() == false && uF.isSelected() == false){
             uMsg.setText("Select availability to update");
         }
-        else{
-            String newChange = "UPDATE store SET avalibility = '" + newAva + "' WHERE store = '" + uStore.getValue() + "'";
-
-            try{
-                Statement statement = connectDB.createStatement();
-                statement.executeUpdate(newChange);
-                uMsg.setText("Availability Change Successful");
-
-            }catch(Exception e){
-                e.printStackTrace();
-            }
+        else {
+            uMsg.setText("Availability Change Successful");
+            updateStoreBE.updateAva(newAva, store);
         }
+    }
+    public void backB(ActionEvent event){
+        Stage stage = (Stage) uBack.getScene().getWindow();
+        stage.close();
+        backToM();
     }
 
     public void backToM(){

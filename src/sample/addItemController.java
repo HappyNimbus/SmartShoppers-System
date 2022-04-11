@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class addItemController {
@@ -43,41 +44,22 @@ public void getStore(String store){
 }
 
 public void addButton(ActionEvent event){
-    addNewItem();
-}
-
-public void addNewItem(){
-
-    DBUtils connectNow = new DBUtils();
-    Connection connectDB = connectNow.getConnection();
-
-    String catagory = adCat.getText();
-    String isle = adIsle.getText();
-    String price = adPrice.getText();
-    String name = adName.getText();
-    String L = adL.getText();
-    String W = adW.getText();
-    String H = adH.getText();
-    String description = adD.getText();
-
     if(adCat.getText().isEmpty() || adIsle.getText().isEmpty() || adPrice.getText().isEmpty() || adName.getText().isEmpty() || adL.getText().isEmpty() || adW.getText().isEmpty() && adH.getText().isEmpty() || adD.getText().isEmpty() ){
 
         adMsg.setText("Information is missing");
     }
-    else{
-        String insertFields = "INSERT INTO items (catagory, price, avalibilty, name, size, sale, store, isle, description) VALUES ('";
-        String insertValues = catagory + "','" + price + "','" + "TRUE" + "','" + name + "','" + L + "x" + W + "x" + H + "','" + "FALSE" + "','" + adStore.getText() + "','" + isle + "','" + description + "')";
-        String insertToRegister = insertFields + insertValues;
-
-        try{
-            Statement statement = connectDB.createStatement();
-            statement.executeUpdate(insertToRegister);
-            adMsg.setText("Item added successfully");
-        }catch (Exception e){
-            e.printStackTrace();
-            e.getCause();
-        }
-
+    else {
+        adMsg.setText("Item added successfully");
+        String catagory = adCat.getText();
+        String isle = adIsle.getText();
+        String price = adPrice.getText();
+        String name = adName.getText();
+        String L = adL.getText();
+        String W = adW.getText();
+        String H = adH.getText();
+        String description = adD.getText();
+        String store = adStore.getText();
+        addItemControllerBE.addNewItem(catagory, price, name, L,W,H,store, isle, description);
     }
 }
 

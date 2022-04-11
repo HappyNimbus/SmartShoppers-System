@@ -1,5 +1,6 @@
 package sample;
 
+import com.sun.deploy.security.SelectableSecurityManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ import javafx.stage.StageStyle;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
@@ -62,7 +64,7 @@ public class signUpAdminController implements Initializable {
         DBUtils connectNow = new DBUtils();
         Connection connectDB = connectNow.getConnection();
 
-        String getLocations = "SELECT * FROM store";
+        String getLocations = "SELECT * FROM store WHERE avalibility = 'TRUE'";
 
         try{
             Statement statement = connectDB.createStatement();
@@ -81,15 +83,45 @@ public class signUpAdminController implements Initializable {
     }
 
     public void signUpButton(ActionEvent event){
+        String firstname = aFirst.getText();
+        String lastname = aLast.getText();
+        String username = aUser.getText();
+        String password = aPass.getText();
+        String password2 = aCPass.getText();
+        String code = aCode.getText();
+        String authentication = "";
+        String store = aStore.getValue();
 
-        if(aPass.getText().equals(aCPass.getText())){
-            aLabel.setText("");
-            registerAdmin();
+        DBUtils connectNow = new DBUtils();
+        Connection connectDB = connectNow.getConnection();
+        String verifyLogin = "SELECT count(1) FROM users WHERE username = '" + username + "'";
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifyLogin);
 
-        } else{
-            aLabel.setText("Password does not match");
+            while (queryResult.next()) {
+
+                if (queryResult.getInt(1) == 1) {
+                    aLabel.setText("User already exists");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
+        if (aPass.getText().equals(aCPass.getText())) {
+                    signUpAdminControllerBE.registerAdmin(firstname, lastname, username, password, password2, authentication, store, code);
+                } else {
+                    aLabel.setText("Password does not match");
+                }
+
+                if (code.equals("101")) {
+                    aLabel.setText("Admin Registered Successfully");
+                } else if (code.equals("111")) {
+                    aLabel.setText("Manager Registered Successfully");
+                } else {
+                    aAuth.setText("Code does not match");
+                }
     }
 
     public void backButton(ActionEvent event){
@@ -98,64 +130,6 @@ public class signUpAdminController implements Initializable {
         backReg();
 
     }
-
-    public void registerAdmin(){
-
-        DBUtils connectNow = new DBUtils();
-        Connection connectDB = connectNow.getConnection();
-
-        String firstname = aFirst.getText();
-        String lastname = aLast.getText();
-        String username = aUser.getText();
-        String password = aPass.getText();
-        String code = aCode.getText();
-        String authentication = "";
-        String store = aStore.getValue();
-
-        if(code.equals("101")){
-            authentication = "Admin";
-
-            if(aStore.getValue().isEmpty()) {
-
-                store = "ALL";
-                String insertFields = "INSERT INTO users (firstname, lastname, username, password, authentication, storepref) VALUES ('";
-                String insertValues = firstname + "','" + lastname + "','" + username + "','" + password + "','" + authentication + "','" + store + "')";
-                String insertToRegister = insertFields + insertValues;
-                try{
-                    Statement statement = connectDB.createStatement();
-                    statement.executeUpdate(insertToRegister);
-                    aMsg.setText("Admin registered successfully");
-                }catch (Exception e){
-                    e.printStackTrace();
-                    e.getCause();
-                }
-
-            }
-            else{
-                aAdmin.setText("Please do not enter a store");
-                aStore.setValue("Select Store");
-            }
-        }
-        else if(code.equals("111")){
-            authentication = "Manager";
-            String insertFields = "INSERT INTO users (firstname, lastname, username, password, authentication, storepref) VALUES ('";
-            String insertValues = firstname + "','" + lastname + "','" + username + "','" + password + "','" + authentication + "','" + store + "')";
-            String insertToRegister = insertFields + insertValues;
-            try{
-                Statement statement = connectDB.createStatement();
-                statement.executeUpdate(insertToRegister);
-                aMsg.setText("Manager registered successfully");
-            }catch (Exception e){
-                e.printStackTrace();
-                e.getCause();
-            }
-        }
-        else{
-            aAuth.setText("Code does not match");
-        }
-    }
-
-
 
     public void backReg(){
         try {
